@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-[#f2f5f9] text-[#0f172a] font-sans antialiased selection:bg-[#c5a059] selection:text-black;
+    min-height: 100vh;
+    background-color: #f2f5f9;
+    background-image: 
+      radial-gradient(ellipse at 50% 0%, rgba(197, 160, 89, 0.14) 0%, rgba(200, 218, 235, 0.3) 40%, transparent 75%),
+      linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+    background-size: 100% 100%, 36px 36px, 36px 36px;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Teko', 'Bebas Neue', 'Chakra Petch', sans-serif;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Metallic gold gradients */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #c59828 0%, #a67c1e 40%, #d4af37 70%, #8c6310 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #f6e08a 0%, #e0b445 35%, #c59828 70%, #9b7218 100%);
+}
+
+.gold-border {
+  border-color: rgba(197, 160, 89, 0.45);
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.22);
+}
+
+.gold-pill {
+  background: linear-gradient(135deg, #edd077 0%, #cfa542 100%);
+  color: #0c0d12;
+  font-weight: 800;
+}
+
+/* Subtle tech clip path */
+.clip-angled {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
