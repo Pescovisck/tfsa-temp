@@ -288,9 +288,9 @@ export function App() {
                 {/* Event Pill */}
                 <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-[11px] font-mono tracking-widest uppercase shadow-sm">
                   <img src="/logo.svg" alt="Tournament Emblem" className="w-4 h-4 object-contain brightness-0 invert" />
-                  <span>SHOWDOWN 2026</span>
+                  <span>SHOWDOWN 3</span>
                   <span className="text-[#c5a059]">•</span>
-                  <span className="text-[#f5da8a]">OPEN STAGE</span>
+                  <span className="text-[#f5da8a]">QUALIFIER STAGE</span>
                 </div>
 
                 {/* Main Heading */}
@@ -299,7 +299,7 @@ export function App() {
                     SHOW<span className="gold-gradient-text">DOWN</span>
                   </h1>
                   <p className="text-base sm:text-lg font-bold text-slate-600 font-['Chakra_Petch',sans-serif] tracking-wide uppercase mt-1">
-                    THE FINALS SA • CICLO DE RODADAS & CLASSIFICAÇÃO
+                    THE FINALS SA • FASE QUALIFICATÓRIA
                   </p>
                 </div>
 
@@ -325,24 +325,16 @@ export function App() {
                 </div>
               </div>
 
-              {/* Right: Matchday Poster Artwork Card */}
+              {/* Right: Showdown Poster Artwork Card */}
               <div className="w-full sm:w-auto flex justify-center flex-shrink-0">
                 <div className="relative group">
                   <div className="absolute -inset-1.5 bg-gradient-to-r from-[#c5a059] to-[#ecc975] rounded-2xl blur-md opacity-30 group-hover:opacity-60 transition duration-500"></div>
-                  <div className="relative w-64 sm:w-72 h-80 sm:h-92 rounded-2xl overflow-hidden border-2 border-[#c5a059] bg-slate-950 shadow-2xl">
+                  <div className="relative w-64 sm:w-72 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#c5a059] bg-white shadow-2xl">
                     <img
-                      src="/images/matchday-poster.jpg"
-                      alt="THE FINALS Matchday Poster"
-                      className="w-full h-full object-cover object-top filter contrast-105"
+                      src="/images/Arte_Site_1.png"
+                      alt="THE FINALS SHOWDOWN - Qualifier Stage"
+                      className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#e5b842] font-mono">
-                        // SHOWDOWN 2026
-                      </span>
-                      <span className="text-xl font-black text-white font-['Teko',sans-serif] tracking-wider uppercase">
-                        CYCLE 1 • OPEN STAGE
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -419,8 +411,10 @@ export function App() {
 
           {/* Discreet Sponsor Credit */}
           <div className="pt-2 pb-2 flex items-center justify-center gap-2 text-xs text-slate-400 font-mono">
-            <span>Patrocinador Oficial:</span>
+            <span>Patrocínio:</span>
             <span className="font-bold text-slate-700 font-['Chakra_Petch',sans-serif] tracking-wider">VANGUARD GAMING</span>
+            <span>•</span>
+            <span className="font-bold text-slate-700 font-['Chakra_Petch',sans-serif] tracking-wider">MISSTELLARIS</span>
           </div>
 
           <div className="pt-4 border-t border-slate-100 text-[10px] text-slate-400 font-mono">
