@@ -116,8 +116,8 @@ export function parseRoundsCSV(csvText: string, fallbackData?: TournamentData): 
       }
     }
 
-    // Skip column headers
-    if (/^(Time|Equipe|Resultado)/i.test(col0) && /^(Time|Resultado)/i.test(col1)) {
+    // Skip column headers (e.g. "Time", "Equipe", "Resultado")
+    if (/^(Time|Equipe|Resultado|Round|Rodada)/i.test(col0)) {
       continue;
     }
 
