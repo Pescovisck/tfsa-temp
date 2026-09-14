@@ -17,11 +17,11 @@
   }
 
   html.dark, html.dark body {
-    background-color: #0b0c10;
-    color: #f1f5f9;
+    background-color: #121214;
+    color: #f4f4f5;
     background-image: 
-      radial-gradient(ellipse at 50% 0%, rgba(197, 160, 89, 0.16) 0%, rgba(15, 18, 28, 0.65) 45%, transparent 80%),
-      linear-gradient(rgba(11, 12, 16, 0.93), rgba(11, 12, 16, 0.93)),
+      radial-gradient(ellipse at 50% 0%, rgba(197, 160, 89, 0.15) 0%, rgba(26, 26, 28, 0.6) 45%, transparent 80%),
+      linear-gradient(rgba(18, 18, 20, 0.91), rgba(18, 18, 20, 0.91)),
       url('/images/dark_bg_calligraphy.png');
     background-size: 100% 800px, 100% 100%, 420px auto;
     background-repeat: no-repeat, no-repeat, repeat;
@@ -50,15 +50,16 @@
 }
 
 html.dark ::-webkit-scrollbar-track {
-  background: #0f1118;
+  background: #141416;
 }
 html.dark ::-webkit-scrollbar-thumb {
-  background: #232838;
+  background: #2b2b30;
   border-radius: 4px;
 }
 html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #353c54;
+  background: #3e3e46;
 }
+
 
 /* Metallic gold gradients */
 .gold-gradient-text {

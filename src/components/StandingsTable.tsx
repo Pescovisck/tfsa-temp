@@ -51,7 +51,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
     }
     if (rank === 2) {
       return (
-        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-[11px] sm:text-xs font-mono shadow-sm">
+        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-200 dark:bg-zinc-800 border border-slate-300 dark:border-zinc-700 text-slate-800 dark:text-zinc-200 font-bold text-[11px] sm:text-xs font-mono shadow-sm">
           2
         </span>
       );
@@ -71,17 +71,17 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
       );
     }
     return (
-      <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-500 font-medium text-[11px] sm:text-xs font-mono">
+      <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-slate-400 dark:text-zinc-500 font-medium text-[11px] sm:text-xs font-mono">
         {rank}
       </span>
     );
   };
 
   return (
-    <div className="bg-white dark:bg-[#10121a] border border-slate-200/90 dark:border-slate-800/90 rounded-2xl overflow-hidden shadow-[0_4px_25px_rgba(15,23,42,0.06)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+    <div className="bg-white dark:bg-[#161618] border border-slate-200/90 dark:border-zinc-800/90 rounded-2xl overflow-hidden shadow-[0_4px_25px_rgba(15,23,42,0.06)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
       
       {/* Table Header Controls */}
-      <div className="p-3.5 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50/70 dark:bg-[#141622]/90">
+      <div className="p-3.5 sm:p-5 border-b border-slate-200 dark:border-zinc-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50/70 dark:bg-[#1c1c20]/90">
         <div>
           <div className="flex items-center gap-2">
             <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-[#c5a059] flex-shrink-0" />
@@ -89,7 +89,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
               TABELA DE CLASSIFICAÇÃO
             </h2>
           </div>
-          <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+          <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 font-mono mt-0.5">
             // {standings.length} EQUIPES • TOP 16 CLASSIFICA
           </p>
         </div>
@@ -102,7 +102,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
             placeholder="Buscar equipe..."
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
-            className="w-full bg-white dark:bg-[#0c0d12] border border-slate-300 dark:border-slate-700 rounded-xl pl-8 sm:pl-9 pr-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-[#c5a059] dark:focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] transition-all font-mono shadow-sm"
+            className="w-full bg-white dark:bg-[#111113] border border-slate-300 dark:border-zinc-700 rounded-xl pl-8 sm:pl-9 pr-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#c5a059] dark:focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] transition-all font-mono shadow-sm"
           />
         </div>
       </div>
@@ -111,7 +111,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
       <div className="overflow-x-auto scrollbar-none">
         <table className="w-full text-left border-collapse table-auto">
           <thead>
-            <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-[#161824] text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-slate-600 dark:text-slate-300">
+            <tr className="border-b border-slate-200 dark:border-zinc-800 bg-slate-100/80 dark:bg-[#202024] text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-slate-600 dark:text-zinc-300">
               <th className="py-2.5 sm:py-3.5 px-1 sm:px-4 w-8 sm:w-14 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('rank')}>
                 <div className="flex items-center justify-center gap-0.5">
                   <span>#</span>
@@ -159,10 +159,10 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/70 text-xs sm:text-sm">
+          <tbody className="divide-y divide-slate-100 dark:divide-zinc-800/70 text-xs sm:text-sm">
             {sortedStandings.length === 0 ? (
               <tr>
-                <td colSpan={6} className="text-center py-10 text-slate-400 dark:text-slate-500 text-xs">
+                <td colSpan={6} className="text-center py-10 text-slate-400 dark:text-zinc-500 text-xs">
                   Nenhuma equipe encontrada para "{searchTerm}"
                 </td>
               </tr>
@@ -174,7 +174,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                   <tr
                     key={team.team}
                     onClick={() => onSelectTeam && onSelectTeam(team.team)}
-                    className={'transition-colors hover:bg-amber-50/40 dark:hover:bg-[#181c28] cursor-pointer ' + (isPlayoffs ? 'bg-amber-50/15 dark:bg-amber-950/15' : '')}
+                    className={'transition-colors hover:bg-amber-50/40 dark:hover:bg-[#222226] cursor-pointer ' + (isPlayoffs ? 'bg-amber-50/15 dark:bg-amber-950/20' : '')}
                   >
                     {/* Rank Badge */}
                     <td className="py-2 sm:py-3 px-1 sm:px-4 text-center">
@@ -186,7 +186,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                     {/* Team Name */}
                     <td className="py-2 sm:py-3 px-1.5 sm:px-4">
                       <div className="flex items-center space-x-1.5 sm:space-x-2.5 min-w-0">
-                        <span className="font-bold text-slate-900 dark:text-slate-100 font-['Chakra_Petch',sans-serif] tracking-wide text-xs sm:text-sm truncate max-w-[105px] xs:max-w-[145px] sm:max-w-none">
+                        <span className="font-bold text-slate-900 dark:text-zinc-100 font-['Chakra_Petch',sans-serif] tracking-wide text-xs sm:text-sm truncate max-w-[105px] xs:max-w-[145px] sm:max-w-none">
                           {team.team}
                         </span>
                         {isPlayoffs ? (
@@ -199,7 +199,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                             </span>
                           </>
                         ) : (
-                          <span className="hidden md:inline-block px-1.5 sm:px-2 py-0.5 text-[9px] font-bold uppercase bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-700 rounded font-mono flex-shrink-0">
+                          <span className="hidden md:inline-block px-1.5 sm:px-2 py-0.5 text-[9px] font-bold uppercase bg-slate-100 dark:bg-zinc-800 text-slate-400 dark:text-zinc-400 border border-slate-200 dark:border-zinc-700 rounded font-mono flex-shrink-0">
                             Eliminado
                           </span>
                         )}
@@ -207,7 +207,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                     </td>
 
                     {/* Matches */}
-                    <td className="py-2 sm:py-3 px-1 sm:px-3 text-center text-slate-600 dark:text-slate-400 font-mono text-[11px] sm:text-xs">
+                    <td className="py-2 sm:py-3 px-1 sm:px-3 text-center text-slate-600 dark:text-zinc-400 font-mono text-[11px] sm:text-xs">
                       {team.matches}
                     </td>
 
@@ -236,18 +236,18 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
       </div>
 
       {/* Legend footer */}
-      <div className="p-3 sm:p-3.5 bg-slate-50/90 dark:bg-[#141622]/90 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 gap-2">
+      <div className="p-3 sm:p-3.5 bg-slate-50/90 dark:bg-[#1c1c20]/90 border-t border-slate-200 dark:border-zinc-800 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 gap-2">
         <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-500"></span>
-            <span className="font-bold text-slate-700 dark:text-slate-300">Zona de Playoffs (Top 16)</span>
+            <span className="font-bold text-slate-700 dark:text-zinc-300">Zona de Playoffs (Top 16)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>
-            <span className="font-medium text-slate-500 dark:text-slate-400">Eliminação (17º ao 22º)</span>
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-slate-300 dark:bg-zinc-700"></span>
+            <span className="font-medium text-slate-500 dark:text-zinc-400">Eliminação (17º ao 22º)</span>
           </div>
         </div>
-        <span className="font-mono text-[9px] sm:text-[10px] text-slate-400 dark:text-slate-500">💡 Toque em uma equipe para ver os confrontos</span>
+        <span className="font-mono text-[9px] sm:text-[10px] text-slate-400 dark:text-zinc-500">💡 Toque em uma equipe para ver os confrontos</span>
       </div>
 
     </div>
