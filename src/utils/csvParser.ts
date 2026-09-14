@@ -119,6 +119,16 @@ export function parseTournamentCSV(csvText: string, source: 'google-sheets' | 'f
 
   flushRoundPairs();
 
+  standings.sort((a, b) => 
+    b.points - a.points || 
+    b.wins - a.wins || 
+    (b.diff ?? 0) - (a.diff ?? 0) || 
+    a.team.localeCompare(b.team)
+  );
+  standings.forEach((team, index) => {
+    team.rank = index + 1;
+  });
+
   return {
     standings,
     rounds,

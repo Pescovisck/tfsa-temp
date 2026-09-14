@@ -39,15 +39,14 @@ export function parsePlacarCSV(csvText: string): TeamStanding[] {
       continue;
     }
 
-    const rank = parseInt(rankStr, 10);
-    if (!isNaN(rank) && teamName) {
+    if (teamName) {
       const matches = parseInt((row[2] || '0').trim(), 10) || 0;
       const wins = parseInt((row[3] || '0').trim(), 10) || 0;
       const losses = parseInt((row[4] || '0').trim(), 10) || 0;
       const points = parseInt((row[5] || '0').trim(), 10) || 0;
 
       standings.push({
-        rank,
+        rank: 0,
         team: teamName,
         matches,
         wins,
@@ -58,8 +57,20 @@ export function parsePlacarCSV(csvText: string): TeamStanding[] {
     }
   }
 
-  // Sort by points desc, then rank asc
-  return standings.sort((a, b) => b.points - a.points || a.rank - b.rank);
+  // Sort by points desc, then wins desc, then diff desc, then team name asc
+  standings.sort((a, b) => 
+    b.points - a.points || 
+    b.wins - a.wins || 
+    (b.diff ?? 0) - (a.diff ?? 0) || 
+    a.team.localeCompare(b.team)
+  );
+
+  // Reassign actual tournament rank based on leaderboard position
+  standings.forEach((team, index) => {
+    team.rank = index + 1;
+  });
+
+  return standings;
 }
 
 export function parseRoundsCSV(csvText: string, fallbackData?: TournamentData): Round[] {

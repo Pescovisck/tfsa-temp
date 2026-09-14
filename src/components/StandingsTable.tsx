@@ -9,21 +9,27 @@ interface StandingsTableProps {
 
 export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSelectTeam }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortField, setSortField] = useState<keyof TeamStanding>('points');
-  const [sortAsc, setSortAsc] = useState(false);
+  const [sortField, setSortField] = useState<keyof TeamStanding>('rank');
+  const [sortAsc, setSortAsc] = useState(true);
 
   const filteredStandings = standings.filter(s =>
     s.team.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const sortedStandings = [...filteredStandings].sort((a, b) => {
+    if (sortField === 'rank') {
+      return sortAsc ? a.rank - b.rank : b.rank - a.rank;
+    }
+    if (sortField === 'team') {
+      return sortAsc ? a.team.localeCompare(b.team) : b.team.localeCompare(a.team);
+    }
     const valA = a[sortField] ?? 0;
     const valB = b[sortField] ?? 0;
-
-    if (typeof valA === 'string') {
-      return sortAsc ? String(valA).localeCompare(String(valB)) : String(valB).localeCompare(String(valA));
+    if (valA !== valB) {
+      return sortAsc ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
     }
-    return sortAsc ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
+    // Secondary tiebreaker: true tournament rank
+    return a.rank - b.rank;
   });
 
   const toggleSort = (field: keyof TeamStanding) => {
@@ -31,7 +37,8 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
       setSortAsc(!sortAsc);
     } else {
       setSortField(field);
-      setSortAsc(false);
+      // If sorting by points/wins, default to descending; if rank/team, default to ascending
+      setSortAsc(field === 'rank' || field === 'team');
     }
   };
 
@@ -57,15 +64,15 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
         </span>
       );
     }
-    if (rank <= 8) {
+    if (rank <= 16) {
       return (
-        <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-semibold text-xs font-mono">
+        <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-amber-50/90 border border-amber-200/90 text-amber-900 font-bold text-xs font-mono shadow-sm">
           {rank}
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-50 text-slate-400 font-medium text-xs font-mono">
+      <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-50 border border-slate-200 text-slate-400 font-medium text-xs font-mono">
         {rank}
       </span>
     );
@@ -153,14 +160,13 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
               </tr>
             ) : (
               sortedStandings.map((team) => {
-                const isTop4 = team.rank <= 4;
-                const isTop8 = team.rank > 4 && team.rank <= 8;
+                const isPlayoffs = team.rank <= 16;
 
                 return (
                   <tr
                     key={team.team}
                     onClick={() => onSelectTeam && onSelectTeam(team.team)}
-                    className={'transition-colors hover:bg-amber-50/40 cursor-pointer ' + (isTop4 ? 'bg-amber-50/20' : '')}
+                    className={'transition-colors hover:bg-amber-50/40 cursor-pointer ' + (isPlayoffs ? 'bg-amber-50/15' : '')}
                   >
                     <td className="py-3 px-4 text-center">
                       <div className="flex justify-center">
@@ -173,14 +179,13 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                         <span className="font-bold text-slate-900 font-['Chakra_Petch',sans-serif] tracking-wide">
                           {team.team}
                         </span>
-                        {isTop4 && (
+                        {isPlayoffs ? (
                           <span className="hidden sm:inline-block px-2 py-0.5 text-[9px] font-black uppercase bg-amber-100 text-[#8c6310] border border-amber-300/80 rounded font-mono">
                             Playoffs
                           </span>
-                        )}
-                        {isTop8 && (
-                          <span className="hidden sm:inline-block px-2 py-0.5 text-[9px] font-bold uppercase bg-slate-100 text-slate-700 border border-slate-200 rounded font-mono">
-                            Fase 2
+                        ) : (
+                          <span className="hidden sm:inline-block px-2 py-0.5 text-[9px] font-bold uppercase bg-slate-100 text-slate-400 border border-slate-200 rounded font-mono">
+                            Eliminado
                           </span>
                         )}
                       </div>
@@ -215,11 +220,11 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-            <span className="font-medium text-slate-600">Zona de Playoffs (Top 4)</span>
+            <span className="font-bold text-slate-700">Zona de Playoffs (Top 16)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-            <span className="font-medium text-slate-600">Fase 2 (Top 8)</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+            <span className="font-medium text-slate-500">Eliminação (17º ao 22º)</span>
           </div>
         </div>
         <span className="font-mono text-[10px] text-slate-400">💡 Clique em uma equipe para visualizar seus confrontos</span>
