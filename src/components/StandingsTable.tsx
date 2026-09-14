@@ -51,45 +51,45 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
     }
     if (rank === 2) {
       return (
-        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-200 border border-slate-300 text-slate-800 font-bold text-[11px] sm:text-xs font-mono shadow-sm">
+        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-[11px] sm:text-xs font-mono shadow-sm">
           2
         </span>
       );
     }
     if (rank === 3) {
       return (
-        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-100 border border-amber-300 text-amber-900 font-bold text-[11px] sm:text-xs font-mono shadow-sm">
+        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-100 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-800/70 text-amber-900 dark:text-amber-300 font-bold text-[11px] sm:text-xs font-mono shadow-sm">
           3
         </span>
       );
     }
     if (rank <= 16) {
       return (
-        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-50/90 border border-amber-200/90 text-amber-900 font-bold text-[11px] sm:text-xs font-mono shadow-sm">
+        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-50/90 dark:bg-amber-950/40 border border-amber-200/90 dark:border-amber-800/50 text-amber-900 dark:text-amber-300 font-bold text-[11px] sm:text-xs font-mono shadow-sm">
           {rank}
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-50 border border-slate-200 text-slate-400 font-medium text-[11px] sm:text-xs font-mono">
+      <span className="inline-flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-500 font-medium text-[11px] sm:text-xs font-mono">
         {rank}
       </span>
     );
   };
 
   return (
-    <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-[0_4px_25px_rgba(15,23,42,0.06)]">
+    <div className="bg-white dark:bg-[#10121a] border border-slate-200/90 dark:border-slate-800/90 rounded-2xl overflow-hidden shadow-[0_4px_25px_rgba(15,23,42,0.06)] dark:shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
       
       {/* Table Header Controls */}
-      <div className="p-3.5 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50/70">
+      <div className="p-3.5 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50/70 dark:bg-[#141622]/90">
         <div>
           <div className="flex items-center gap-2">
             <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-[#c5a059] flex-shrink-0" />
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 font-['Teko',sans-serif] tracking-wider uppercase leading-none">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-['Teko',sans-serif] tracking-wider uppercase leading-none">
               TABELA DE CLASSIFICAÇÃO
             </h2>
           </div>
-          <p className="text-[10px] sm:text-[11px] text-slate-500 font-mono mt-0.5">
+          <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
             // {standings.length} EQUIPES • TOP 16 CLASSIFICA
           </p>
         </div>
@@ -102,7 +102,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
             placeholder="Buscar equipe..."
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
-            className="w-full bg-white border border-slate-300 rounded-xl pl-8 sm:pl-9 pr-3 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] transition-all font-mono shadow-sm"
+            className="w-full bg-white dark:bg-[#0c0d12] border border-slate-300 dark:border-slate-700 rounded-xl pl-8 sm:pl-9 pr-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-[#c5a059] dark:focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] transition-all font-mono shadow-sm"
           />
         </div>
       </div>
@@ -111,22 +111,22 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
       <div className="overflow-x-auto scrollbar-none">
         <table className="w-full text-left border-collapse table-auto">
           <thead>
-            <tr className="border-b border-slate-200 bg-slate-100/80 text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-slate-600">
-              <th className="py-2.5 sm:py-3.5 px-1 sm:px-4 w-8 sm:w-14 text-center cursor-pointer hover:text-slate-900 transition-colors" onClick={() => toggleSort('rank')}>
+            <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-[#161824] text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-slate-600 dark:text-slate-300">
+              <th className="py-2.5 sm:py-3.5 px-1 sm:px-4 w-8 sm:w-14 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('rank')}>
                 <div className="flex items-center justify-center gap-0.5">
                   <span>#</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </th>
 
-              <th className="py-2.5 sm:py-3.5 px-1.5 sm:px-4 cursor-pointer hover:text-slate-900 transition-colors" onClick={() => toggleSort('team')}>
+              <th className="py-2.5 sm:py-3.5 px-1.5 sm:px-4 cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('team')}>
                 <div className="flex items-center gap-1">
                   <span>Time</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </th>
 
-              <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 transition-colors" onClick={() => toggleSort('matches')}>
+              <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('matches')}>
                 <div className="flex items-center justify-center gap-0.5">
                   <span className="sm:hidden">J</span>
                   <span className="hidden sm:inline">Jogos</span>
@@ -134,35 +134,35 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                 </div>
               </th>
 
-              <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 transition-colors" onClick={() => toggleSort('wins')}>
+              <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('wins')}>
                 <div className="flex items-center justify-center gap-0.5">
-                  <span className="sm:hidden text-emerald-600 font-black">V</span>
-                  <span className="hidden sm:inline text-emerald-600 font-bold">Vitórias</span>
+                  <span className="sm:hidden text-emerald-600 dark:text-emerald-400 font-black">V</span>
+                  <span className="hidden sm:inline text-emerald-600 dark:text-emerald-400 font-bold">Vitórias</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </th>
 
-              <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 transition-colors" onClick={() => toggleSort('losses')}>
+              <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('losses')}>
                 <div className="flex items-center justify-center gap-0.5">
-                  <span className="sm:hidden text-rose-600 font-black">D</span>
-                  <span className="hidden sm:inline text-rose-600 font-bold">Derrotas</span>
+                  <span className="sm:hidden text-rose-600 dark:text-rose-400 font-black">D</span>
+                  <span className="hidden sm:inline text-rose-600 dark:text-rose-400 font-bold">Derrotas</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </th>
 
-              <th className="py-2.5 sm:py-3.5 px-1.5 sm:px-4 text-center cursor-pointer hover:text-slate-900 transition-colors bg-amber-50/50" onClick={() => toggleSort('points')}>
+              <th className="py-2.5 sm:py-3.5 px-1.5 sm:px-4 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors bg-amber-50/50 dark:bg-amber-950/20" onClick={() => toggleSort('points')}>
                 <div className="flex items-center justify-center gap-0.5">
-                  <span className="sm:hidden text-[#8c6310] font-black">PTS</span>
-                  <span className="hidden sm:inline text-[#8c6310] font-black">Pontos</span>
+                  <span className="sm:hidden text-[#8c6310] dark:text-[#f5da8a] font-black">PTS</span>
+                  <span className="hidden sm:inline text-[#8c6310] dark:text-[#f5da8a] font-black">Pontos</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#c5a059]" />
                 </div>
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 text-xs sm:text-sm">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/70 text-xs sm:text-sm">
             {sortedStandings.length === 0 ? (
               <tr>
-                <td colSpan={6} className="text-center py-10 text-slate-400 text-xs">
+                <td colSpan={6} className="text-center py-10 text-slate-400 dark:text-slate-500 text-xs">
                   Nenhuma equipe encontrada para "{searchTerm}"
                 </td>
               </tr>
@@ -174,7 +174,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                   <tr
                     key={team.team}
                     onClick={() => onSelectTeam && onSelectTeam(team.team)}
-                    className={'transition-colors hover:bg-amber-50/40 cursor-pointer ' + (isPlayoffs ? 'bg-amber-50/15' : '')}
+                    className={'transition-colors hover:bg-amber-50/40 dark:hover:bg-[#181c28] cursor-pointer ' + (isPlayoffs ? 'bg-amber-50/15 dark:bg-amber-950/15' : '')}
                   >
                     {/* Rank Badge */}
                     <td className="py-2 sm:py-3 px-1 sm:px-4 text-center">
@@ -186,20 +186,20 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                     {/* Team Name */}
                     <td className="py-2 sm:py-3 px-1.5 sm:px-4">
                       <div className="flex items-center space-x-1.5 sm:space-x-2.5 min-w-0">
-                        <span className="font-bold text-slate-900 font-['Chakra_Petch',sans-serif] tracking-wide text-xs sm:text-sm truncate max-w-[105px] xs:max-w-[145px] sm:max-w-none">
+                        <span className="font-bold text-slate-900 dark:text-slate-100 font-['Chakra_Petch',sans-serif] tracking-wide text-xs sm:text-sm truncate max-w-[105px] xs:max-w-[145px] sm:max-w-none">
                           {team.team}
                         </span>
                         {isPlayoffs ? (
                           <>
-                            <span className="hidden md:inline-block px-1.5 sm:px-2 py-0.5 text-[9px] font-black uppercase bg-amber-100 text-[#8c6310] border border-amber-300/80 rounded font-mono flex-shrink-0">
+                            <span className="hidden md:inline-block px-1.5 sm:px-2 py-0.5 text-[9px] font-black uppercase bg-amber-100 dark:bg-amber-950/70 text-[#8c6310] dark:text-amber-300 border border-amber-300/80 dark:border-amber-700/60 rounded font-mono flex-shrink-0">
                               Playoffs
                             </span>
-                            <span className="md:hidden text-[8px] font-black uppercase bg-amber-100 text-[#8c6310] px-1 py-0.2 rounded border border-amber-300/70 font-mono flex-shrink-0">
+                            <span className="md:hidden text-[8px] font-black uppercase bg-amber-100 dark:bg-amber-950/70 text-[#8c6310] dark:text-amber-300 px-1 py-0.2 rounded border border-amber-300/70 dark:border-amber-700/60 font-mono flex-shrink-0">
                               PO
                             </span>
                           </>
                         ) : (
-                          <span className="hidden md:inline-block px-1.5 sm:px-2 py-0.5 text-[9px] font-bold uppercase bg-slate-100 text-slate-400 border border-slate-200 rounded font-mono flex-shrink-0">
+                          <span className="hidden md:inline-block px-1.5 sm:px-2 py-0.5 text-[9px] font-bold uppercase bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-700 rounded font-mono flex-shrink-0">
                             Eliminado
                           </span>
                         )}
@@ -207,23 +207,23 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                     </td>
 
                     {/* Matches */}
-                    <td className="py-2 sm:py-3 px-1 sm:px-3 text-center text-slate-600 font-mono text-[11px] sm:text-xs">
+                    <td className="py-2 sm:py-3 px-1 sm:px-3 text-center text-slate-600 dark:text-slate-400 font-mono text-[11px] sm:text-xs">
                       {team.matches}
                     </td>
 
                     {/* Wins */}
-                    <td className="py-2 sm:py-3 px-1 sm:px-3 text-center font-mono text-[11px] sm:text-xs font-bold text-emerald-600">
+                    <td className="py-2 sm:py-3 px-1 sm:px-3 text-center font-mono text-[11px] sm:text-xs font-bold text-emerald-600 dark:text-emerald-400">
                       {team.wins}
                     </td>
 
                     {/* Losses */}
-                    <td className="py-2 sm:py-3 px-1 sm:px-3 text-center font-mono text-[11px] sm:text-xs font-bold text-rose-600">
+                    <td className="py-2 sm:py-3 px-1 sm:px-3 text-center font-mono text-[11px] sm:text-xs font-bold text-rose-600 dark:text-rose-400">
                       {team.losses}
                     </td>
 
                     {/* Points */}
-                    <td className="py-2 sm:py-3 px-1.5 sm:px-4 text-center bg-amber-50/40">
-                      <span className="inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded sm:rounded-lg bg-amber-100 text-[#8c6310] font-black font-mono text-xs sm:text-sm border border-amber-300/60 shadow-sm">
+                    <td className="py-2 sm:py-3 px-1.5 sm:px-4 text-center bg-amber-50/40 dark:bg-amber-950/20">
+                      <span className="inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded sm:rounded-lg bg-amber-100 dark:bg-amber-950/80 text-[#8c6310] dark:text-[#f5da8a] font-black font-mono text-xs sm:text-sm border border-amber-300/60 dark:border-amber-700/70 shadow-sm">
                         {team.points}
                       </span>
                     </td>
@@ -236,18 +236,18 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
       </div>
 
       {/* Legend footer */}
-      <div className="p-3 sm:p-3.5 bg-slate-50/90 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] sm:text-[11px] text-slate-500 gap-2">
+      <div className="p-3 sm:p-3.5 bg-slate-50/90 dark:bg-[#141622]/90 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 gap-2">
         <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-500"></span>
-            <span className="font-bold text-slate-700">Zona de Playoffs (Top 16)</span>
+            <span className="font-bold text-slate-700 dark:text-slate-300">Zona de Playoffs (Top 16)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-slate-300"></span>
-            <span className="font-medium text-slate-500">Eliminação (17º ao 22º)</span>
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>
+            <span className="font-medium text-slate-500 dark:text-slate-400">Eliminação (17º ao 22º)</span>
           </div>
         </div>
-        <span className="font-mono text-[9px] sm:text-[10px] text-slate-400">💡 Toque em uma equipe para ver os confrontos</span>
+        <span className="font-mono text-[9px] sm:text-[10px] text-slate-400 dark:text-slate-500">💡 Toque em uma equipe para ver os confrontos</span>
       </div>
 
     </div>
