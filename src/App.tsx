@@ -270,24 +270,24 @@ export function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-12 sm:pb-16">
 
         {/* Matchday Hero Section */}
-        <div className="mb-10 relative overflow-hidden rounded-3xl bg-white border border-slate-200/90 shadow-[0_10px_35px_rgba(15,23,42,0.06)]">
+        <div className="mb-6 sm:mb-10 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white border border-slate-200/90 shadow-[0_10px_35px_rgba(15,23,42,0.06)]">
           {/* Top Championship Gold Bar */}
           <div className="h-1.5 w-full bg-gradient-to-r from-[#8c6310] via-[#ecc975] to-[#8c6310]"></div>
 
-          <div className="p-6 sm:p-10 relative">
+          <div className="p-4 sm:p-8 lg:p-10 relative">
             {/* Subtle background glow */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-amber-100/30 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 relative z-10">
               {/* Left Headline & Meta */}
-              <div className="text-center lg:text-left space-y-4 max-w-2xl">
+              <div className="text-center lg:text-left space-y-3 sm:space-y-4 max-w-2xl w-full">
 
                 {/* Event Pill */}
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-[11px] font-mono tracking-widest uppercase shadow-sm">
-                  <img src="/logo.svg" alt="Tournament Emblem" className="w-4 h-4 object-contain brightness-0 invert" />
+                <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-slate-900 text-white text-[10px] sm:text-[11px] font-mono tracking-widest uppercase shadow-sm">
+                  <img src="/logo.svg" alt="Tournament Emblem" className="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain brightness-0 invert" />
                   <span>SHOWDOWN 3</span>
                   <span className="text-[#c5a059]">•</span>
                   <span className="text-[#f5da8a]">QUALIFIER STAGE</span>
@@ -295,10 +295,10 @@ export function App() {
 
                 {/* Main Heading */}
                 <div>
-                  <h1 className="text-7xl sm:text-7xl md:text-8xl font-black text-slate-950 font-['Teko',sans-serif] tracking-wider uppercase leading-none">
+                  <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-slate-950 font-['Teko',sans-serif] tracking-wider uppercase leading-none break-words">
                     SHOW<span className="gold-gradient-text">DOWN</span>
                   </h1>
-                  <p className="text-base sm:text-lg font-bold text-slate-600 font-['Chakra_Petch',sans-serif] tracking-wide uppercase mt-1">
+                  <p className="text-sm sm:text-lg font-bold text-slate-600 font-['Chakra_Petch',sans-serif] tracking-wide uppercase mt-1">
                     THE FINALS SA • FASE QUALIFICATÓRIA
                   </p>
                 </div>
@@ -309,16 +309,16 @@ export function App() {
                 </p>
 
                 {/* Quick Info Chips */}
-                <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs font-mono">
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700">
+                <div className="pt-1 sm:pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3 text-[11px] sm:text-xs font-mono">
+                  <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700">
                     <Users className="w-3.5 h-3.5 text-[#c5a059]" />
                     <span><strong>{tournamentData.standings.length}</strong> Equipes</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700">
+                  <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700">
                     <Calendar className="w-3.5 h-3.5 text-[#c5a059]" />
                     <span><strong>{tournamentData.rounds.length}</strong> Rodadas</span>
                   </div>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700">
+                  <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700">
                     <Sparkles className="w-3.5 h-3.5 text-[#c5a059]" />
                     <span><strong>88</strong> Confrontos</span>
                   </div>
@@ -329,7 +329,7 @@ export function App() {
               <div className="w-full sm:w-auto flex justify-center flex-shrink-0">
                 <div className="relative group">
                   <div className="absolute -inset-1.5 bg-gradient-to-r from-[#c5a059] to-[#ecc975] rounded-2xl blur-md opacity-30 group-hover:opacity-60 transition duration-500"></div>
-                  <div className="relative w-64 sm:w-72 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#c5a059] bg-white shadow-2xl">
+                  <div className="relative w-52 sm:w-64 md:w-72 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#c5a059] bg-white shadow-xl">
                     <img
                       src="/images/Arte_Site_1.png"
                       alt="THE FINALS SHOWDOWN - Qualifier Stage"
@@ -347,32 +347,32 @@ export function App() {
         <Podium standings={tournamentData.standings} />
 
         {/* View Mode Navigation Tabs */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 mb-8 pb-4 gap-4">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 mb-6 sm:mb-8 pb-3 sm:pb-4 gap-3">
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-3 w-full sm:w-auto">
             <button
               onClick={() => setActiveTab('standings')}
-              className={'flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold font-[\'Teko\',sans-serif] tracking-wider text-xl transition-all cursor-pointer uppercase shadow-sm ' +
+              className={'flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold font-[\'Teko\',sans-serif] tracking-wider text-base sm:text-xl transition-all cursor-pointer uppercase shadow-sm text-center ' +
                 (activeTab === 'standings'
-                  ? 'gold-gradient-bg text-black shadow-[0_4px_16px_rgba(197,160,89,0.35)]'
+                  ? 'gold-gradient-bg text-black shadow-[0_4px_16px_rgba(197,160,89,0.35)] font-black'
                   : 'bg-white text-slate-700 hover:text-slate-950 hover:bg-slate-50 border border-slate-200')}
             >
-              <Trophy className="w-4 h-4" />
-              <span>CLASSIFICAÇÃO GERAL</span>
+              <Trophy className="w-4 h-4 flex-shrink-0" />
+              <span className="truncate">CLASSIFICAÇÃO</span>
             </button>
 
             <button
               onClick={() => setActiveTab('rounds')}
-              className={'flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold font-[\'Teko\',sans-serif] tracking-wider text-xl transition-all cursor-pointer uppercase shadow-sm ' +
+              className={'flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold font-[\'Teko\',sans-serif] tracking-wider text-base sm:text-xl transition-all cursor-pointer uppercase shadow-sm text-center ' +
                 (activeTab === 'rounds'
-                  ? 'gold-gradient-bg text-black shadow-[0_4px_16px_rgba(197,160,89,0.35)]'
+                  ? 'gold-gradient-bg text-black shadow-[0_4px_16px_rgba(197,160,89,0.35)] font-black'
                   : 'bg-white text-slate-700 hover:text-slate-950 hover:bg-slate-50 border border-slate-200')}
             >
-              <Swords className="w-4 h-4" />
-              <span>CONFRONTOS & RODADAS (1 - 8)</span>
+              <Swords className="w-4 h-4 flex-shrink-0" />
+              <span className="truncate">CONFRONTOS</span>
             </button>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-500 font-mono">
+          <div className="flex items-center justify-center sm:justify-end gap-2 text-[11px] sm:text-xs text-slate-500 font-mono">
             <span>{tournamentData.standings.length} Equipes</span>
             <span>•</span>
             <span>{tournamentData.rounds.length} Rodadas</span>

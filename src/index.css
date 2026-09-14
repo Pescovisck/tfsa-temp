@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @layer base {
-  body {
+  html, body {
     @apply bg-[#f2f5f9] text-[#0f172a] font-sans antialiased selection:bg-[#c5a059] selection:text-black;
     min-height: 100vh;
+    max-width: 100vw;
+    overflow-x: hidden;
     background-color: #f2f5f9;
     background-image: 
       radial-gradient(ellipse at 50% 0%, rgba(197, 160, 89, 0.14) 0%, rgba(200, 218, 235, 0.3) 40%, transparent 75%),
