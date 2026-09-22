@@ -1,12 +1,14 @@
 import React from 'react';
 import { Trophy, Medal, Award } from 'lucide-react';
 import type { TeamStanding } from '../types/tournament';
+import { useLanguage } from '../hooks/useLanguage';
 
 interface PodiumProps {
   standings: TeamStanding[];
 }
 
 export const Podium: React.FC<PodiumProps> = ({ standings }) => {
+  const { t } = useLanguage();
   if (standings.length < 3) return null;
 
   const first = standings[0];
@@ -30,7 +32,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
         </div>
 
         <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-black text-slate-500 dark:text-zinc-400 mb-1 font-mono">
-          // 2º LUGAR • TOP CONTENDER
+          // {t('podium_2nd', '2º LUGAR • TOP CONTENDER')}
         </span>
 
         <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-1.5 sm:mb-2 truncate max-w-full font-['Teko',sans-serif] tracking-wider uppercase">
@@ -44,7 +46,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
         </div>
 
         <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 font-mono">
-          Aproveitamento: <strong className="text-slate-800 dark:text-zinc-200">{getWinRate(second.wins, second.matches)}</strong>
+          {t('win_rate', 'Aproveitamento:')} <strong className="text-slate-800 dark:text-zinc-200">{getWinRate(second.wins, second.matches)}</strong>
         </span>
       </div>
 
@@ -59,7 +61,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
 
         <span className="text-[10px] sm:text-xs uppercase tracking-widest font-black text-[#8c6310] dark:text-[#f5da8a] mb-1 font-mono flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#c5a059] animate-pulse"></span>
-          LÍDER DO CAMPEONATO
+          {t('podium_1st', 'LÍDER DO CAMPEONATO')}
         </span>
 
         <h3 className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white mb-1.5 sm:mb-2 truncate max-w-full font-['Teko',sans-serif] tracking-wider uppercase">
@@ -73,7 +75,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
         </div>
 
         <span className="text-[10px] sm:text-[11px] text-slate-600 dark:text-zinc-400 font-mono">
-          Aproveitamento: <strong className="text-[#8c6310] dark:text-[#f5da8a] font-bold">{getWinRate(first.wins, first.matches)}</strong>
+          {t('win_rate', 'Aproveitamento:')} <strong className="text-[#8c6310] dark:text-[#f5da8a] font-bold">{getWinRate(first.wins, first.matches)}</strong>
         </span>
       </div>
 
@@ -86,7 +88,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
         </div>
 
         <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-black text-amber-700 dark:text-amber-400 mb-1 font-mono">
-          // 3º LUGAR • PODIUM
+          // {t('podium_3rd', '3º LUGAR • PÓDIO')}
         </span>
 
         <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-1.5 sm:mb-2 truncate max-w-full font-['Teko',sans-serif] tracking-wider uppercase">
@@ -100,7 +102,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
         </div>
 
         <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 font-mono">
-          Aproveitamento: <strong className="text-amber-800 dark:text-amber-400 font-bold">{getWinRate(third.wins, third.matches)}</strong>
+          {t('win_rate', 'Aproveitamento:')} <strong className="text-amber-800 dark:text-amber-400 font-bold">{getWinRate(third.wins, third.matches)}</strong>
         </span>
       </div>
 

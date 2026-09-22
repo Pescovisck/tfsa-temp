@@ -24,9 +24,43 @@ export interface Round {
   matches: Match[];
 }
 
+export type Language = 'en' | 'pt' | 'es';
+
+export interface BracketGroupTeam {
+  team: string;
+  scores: (number | null)[];
+  total: number;
+  isQualified?: boolean;
+  isWinner?: boolean;
+  rank?: number;
+}
+
+export interface BracketGroup {
+  id: string;
+  name: string;
+  stageName: string;
+  format: 'MD3' | 'MD5';
+  teams: BracketGroupTeam[];
+}
+
+export interface BracketStage {
+  id: string;
+  titleKey: string;
+  defaultTitle: string;
+  subtitleKey?: string;
+  groups: BracketGroup[];
+}
+
+export interface BracketData {
+  stages: BracketStage[];
+  lastUpdated: string;
+  source: 'google-sheets' | 'fallback' | 'custom';
+}
+
 export interface TournamentData {
   standings: TeamStanding[];
   rounds: Round[];
+  bracket?: BracketData;
   lastUpdated: string;
   source: 'google-sheets' | 'fallback' | 'custom';
   sheetUrl?: string;

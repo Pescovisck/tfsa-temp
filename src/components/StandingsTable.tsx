@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Trophy, ArrowUpDown } from 'lucide-react';
 import type { TeamStanding } from '../types/tournament';
+import { useLanguage } from '../hooks/useLanguage';
 
 interface StandingsTableProps {
   standings: TeamStanding[];
@@ -8,6 +9,7 @@ interface StandingsTableProps {
 }
 
 export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSelectTeam }) => {
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState<keyof TeamStanding>('rank');
   const [sortAsc, setSortAsc] = useState(true);
@@ -86,11 +88,11 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
           <div className="flex items-center gap-2">
             <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-[#c5a059] flex-shrink-0" />
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-['Teko',sans-serif] tracking-wider uppercase leading-none">
-              TABELA DE CLASSIFICAÇÃO
+              {t('tab_standings', 'TABELA DE CLASSIFICAÇÃO')}
             </h2>
           </div>
           <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 font-mono mt-0.5">
-            // {standings.length} EQUIPES • TOP 16 CLASSIFICA
+            // {standings.length} {t('hero_teams_count', 'EQUIPES')} • {t('legend_playoff_zone', 'TOP 16 CLASSIFICA')}
           </p>
         </div>
 
@@ -99,7 +101,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
           <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
-            placeholder="Buscar equipe..."
+            placeholder={t('search_team', 'Buscar equipe...')}
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             className="w-full bg-white dark:bg-[#111113] border border-slate-300 dark:border-zinc-700 rounded-xl pl-8 sm:pl-9 pr-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-[#c5a059] dark:focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] transition-all font-mono shadow-sm"
@@ -121,39 +123,35 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
 
               <th className="py-2.5 sm:py-3.5 px-1.5 sm:px-4 cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('team')}>
                 <div className="flex items-center gap-1">
-                  <span>Time</span>
+                  <span>{t('table_team', 'Time')}</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </th>
 
               <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('matches')}>
                 <div className="flex items-center justify-center gap-0.5">
-                  <span className="sm:hidden">J</span>
-                  <span className="hidden sm:inline">Jogos</span>
+                  <span>{t('table_matches', 'J')}</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </th>
 
               <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('wins')}>
                 <div className="flex items-center justify-center gap-0.5">
-                  <span className="sm:hidden text-emerald-600 dark:text-emerald-400 font-black">V</span>
-                  <span className="hidden sm:inline text-emerald-600 dark:text-emerald-400 font-bold">Vitórias</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">{t('table_wins', 'V')}</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </th>
 
               <th className="py-2.5 sm:py-3.5 px-1 sm:px-3 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors" onClick={() => toggleSort('losses')}>
                 <div className="flex items-center justify-center gap-0.5">
-                  <span className="sm:hidden text-rose-600 dark:text-rose-400 font-black">D</span>
-                  <span className="hidden sm:inline text-rose-600 dark:text-rose-400 font-bold">Derrotas</span>
+                  <span className="text-rose-600 dark:text-rose-400 font-bold">{t('table_losses', 'D')}</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 </div>
               </th>
 
               <th className="py-2.5 sm:py-3.5 px-1.5 sm:px-4 text-center cursor-pointer hover:text-slate-900 dark:hover:text-white transition-colors bg-amber-50/50 dark:bg-amber-950/20" onClick={() => toggleSort('points')}>
                 <div className="flex items-center justify-center gap-0.5">
-                  <span className="sm:hidden text-[#8c6310] dark:text-[#f5da8a] font-black">PTS</span>
-                  <span className="hidden sm:inline text-[#8c6310] dark:text-[#f5da8a] font-black">Pontos</span>
+                  <span className="text-[#8c6310] dark:text-[#f5da8a] font-black">{t('table_points', 'PTS')}</span>
                   <ArrowUpDown className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#c5a059]" />
                 </div>
               </th>
@@ -240,14 +238,14 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
         <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-500"></span>
-            <span className="font-bold text-slate-700 dark:text-zinc-300">Zona de Playoffs (Top 16)</span>
+            <span className="font-bold text-slate-700 dark:text-zinc-300">{t('legend_playoff_zone', 'Zona de Playoffs (Top 16)')}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-slate-300 dark:bg-zinc-700"></span>
             <span className="font-medium text-slate-500 dark:text-zinc-400">Eliminação (17º ao 22º)</span>
           </div>
         </div>
-        <span className="font-mono text-[9px] sm:text-[10px] text-slate-400 dark:text-zinc-500">💡 Toque em uma equipe para ver os confrontos</span>
+        <span className="font-mono text-[9px] sm:text-[10px] text-slate-400 dark:text-zinc-500">💡 {t('legend_realtime', 'Atualizado em tempo real')}</span>
       </div>
 
     </div>
