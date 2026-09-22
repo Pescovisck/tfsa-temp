@@ -92,7 +92,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
             </h2>
           </div>
           <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 font-mono mt-0.5">
-            // {standings.length} {t('hero_teams_count', 'EQUIPES')} • {t('legend_playoff_zone', 'TOP 16 CLASSIFICA')}
+            // {standings.length} {t('hero_teams_count', 'EQUIPES')} • {t('top_16_qualifies', 'TOP 16 CLASSIFICA')}
           </p>
         </div>
 

@@ -42,7 +42,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
         <div className="flex items-center gap-2.5 sm:gap-3 text-xs bg-slate-50 dark:bg-[#222226] px-3 sm:px-4 py-1 sm:py-1.5 rounded-xl border border-slate-200 dark:border-zinc-800 mb-1.5 sm:mb-2 font-mono">
           <span className="text-slate-600 dark:text-zinc-400"><strong className="text-slate-950 dark:text-white text-sm sm:text-base">{second.points}</strong> PTS</span>
           <span className="text-slate-300 dark:text-zinc-700">|</span>
-          <span className="text-slate-700 dark:text-zinc-300 font-semibold">{second.wins}V - {second.losses}D</span>
+          <span className="text-slate-700 dark:text-zinc-300 font-semibold">{second.wins}{t('table_wins', 'V')} - {second.losses}{t('table_losses', 'D')}</span>
         </div>
 
         <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 font-mono">
@@ -71,7 +71,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
         <div className="flex items-center gap-3 sm:gap-4 text-xs bg-amber-50/80 dark:bg-amber-950/30 px-4 sm:px-5 py-1.5 sm:py-2 rounded-xl border border-[#c5a059]/40 dark:border-[#c5a059]/40 mb-1.5 sm:mb-2 font-mono">
           <span className="text-slate-700 dark:text-zinc-300"><strong className="text-[#8c6310] dark:text-[#f5da8a] text-lg sm:text-xl font-black">{first.points}</strong> PTS</span>
           <span className="text-amber-300 dark:text-amber-600">|</span>
-          <span className="text-slate-800 dark:text-zinc-200 font-bold">{first.wins}V - {first.losses}D</span>
+          <span className="text-slate-800 dark:text-zinc-200 font-bold">{first.wins}{t('table_wins', 'V')} - {first.losses}{t('table_losses', 'D')}</span>
         </div>
 
         <span className="text-[10px] sm:text-[11px] text-slate-600 dark:text-zinc-400 font-mono">
@@ -98,7 +98,7 @@ export const Podium: React.FC<PodiumProps> = ({ standings }) => {
         <div className="flex items-center gap-2.5 sm:gap-3 text-xs bg-amber-50/50 dark:bg-[#222226] px-3 sm:px-4 py-1 sm:py-1.5 rounded-xl border border-amber-200/80 dark:border-amber-900/40 mb-1.5 sm:mb-2 font-mono">
           <span className="text-slate-600 dark:text-zinc-400"><strong className="text-slate-950 dark:text-white text-sm sm:text-base">{third.points}</strong> PTS</span>
           <span className="text-amber-200 dark:text-amber-700">|</span>
-          <span className="text-slate-700 dark:text-zinc-300 font-semibold">{third.wins}V - {third.losses}D</span>
+          <span className="text-slate-700 dark:text-zinc-300 font-semibold">{third.wins}{t('table_wins', 'V')} - {third.losses}{t('table_losses', 'D')}</span>
         </div>
 
         <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 font-mono">

@@ -44,7 +44,7 @@ export const BracketView: React.FC<BracketViewProps> = ({
             <div>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#c5a059]/20 border border-[#c5a059]/40 text-[#c5a059] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider mb-1">
                 <Crown className="w-3 h-3 text-[#c5a059]" />
-                {t('status_champion', 'Campeão Showdown 2026')}
+                {t('champion_showdown_banner', 'Campeão Showdown 2026')}
               </div>
               <h2 className="text-3xl sm:text-5xl font-black text-slate-950 dark:text-white font-['Teko',sans-serif] tracking-wider uppercase leading-none">
                 {championTeam.team}
@@ -87,14 +87,14 @@ export const BracketView: React.FC<BracketViewProps> = ({
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-[#c5a059]" />
             <span>
-              {t('filter_by_team', 'Destacando equipe')}: <strong className="text-slate-950 dark:text-white font-bold">{highlightedTeam}</strong>
+              {t('highlighting_team', 'Destacando equipe')}: <strong className="text-slate-950 dark:text-white font-bold">{highlightedTeam}</strong>
             </span>
           </div>
           <button
             onClick={() => setHighlightedTeam(null)}
             className="text-[11px] font-bold text-[#c5a059] hover:underline cursor-pointer"
           >
-            {t('clear_filter', 'Limpar destaque')}
+            {t('clear_highlight', 'Limpar destaque')}
           </button>
         </div>
       )}

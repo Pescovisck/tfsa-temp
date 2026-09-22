@@ -40,7 +40,7 @@ export const translations = {
     stage_finals_title: 'Grande Final',
     stage_finals_sub: '2 finalistas • MD5 Cashout Final',
 
-    // Bracket Cards
+    // Bracket Cards & Highlights
     group: 'Grupo',
     group_label: 'Grupo',
     match_game: 'Partida',
@@ -53,6 +53,9 @@ export const translations = {
     status_finalist: 'Finalista',
     status_champion: 'Campeão',
     status_eliminated: 'Eliminado',
+    champion_showdown_banner: 'Campeão Showdown 2026',
+    highlighting_team: 'Destacando equipe',
+    clear_highlight: 'Limpar destaque',
     trophy_title: 'Troféu Showdown 2026',
     stage_navigation: 'Fases:',
 
@@ -74,24 +77,35 @@ export const translations = {
     table_diff: 'DIF',
     table_points: 'PTS',
     legend_playoff_zone: 'Zona de Playoffs (Top 16)',
+    top_16_qualifies: 'TOP 16 CLASSIFICA',
     legend_elimination: 'Eliminação (17º ao 22º)',
     legend_realtime: 'Atualizado em tempo real',
     no_teams_found: 'Nenhuma equipe encontrada para',
 
     // Rounds Filter
     round: 'Rodada',
-    filter_all: 'Todos',
-    filter_completed: 'Concluídos',
-    filter_pending: 'Pendentes',
+    filter_label: 'Filtrar:',
+    filter_all: 'Todas',
+    filter_completed: 'Finalizadas',
+    filter_pending: 'Aguardando',
+    filter_matches_team: 'Filtrando confrontos da equipe:',
     filter_by_team: 'Filtrando por',
     clear_filter: 'Limpar filtro',
     no_matches_found: 'Nenhum confronto encontrado.',
+    match_status_completed: 'Finalizado',
+    match_status_pending: 'Pendente',
 
-    // Footer & Controls
+    // Tooltips & Footer Controls
     theme: 'Tema',
     theme_light: 'Claro',
     theme_dark: 'Escuro',
     theme_system: 'Sistema',
+    tooltip_theme_light: 'Ativar tema Claro',
+    tooltip_theme_dark: 'Ativar tema Escuro',
+    tooltip_theme_system: 'Seguir configuração do sistema',
+    tooltip_lang_en: 'Mudar para Inglês',
+    tooltip_lang_pt: 'Mudar para Português',
+    tooltip_lang_es: 'Mudar para Espanhol',
     language: 'Idioma',
     footer_sync: '// Sistema de exibição com sincronização em tempo real',
     sponsor: 'Patrocínio:',
@@ -137,7 +151,7 @@ export const translations = {
     stage_finals_title: 'Grand Finals',
     stage_finals_sub: '2 finalists • BO5 Cashout Final',
 
-    // Bracket Cards
+    // Bracket Cards & Highlights
     group: 'Group',
     group_label: 'Group',
     match_game: 'Match',
@@ -150,6 +164,9 @@ export const translations = {
     status_finalist: 'Finalist',
     status_champion: 'Champion',
     status_eliminated: 'Eliminated',
+    champion_showdown_banner: 'Showdown 2026 Champion',
+    highlighting_team: 'Highlighting team',
+    clear_highlight: 'Clear highlight',
     trophy_title: 'Showdown 2026 Trophy',
     stage_navigation: 'Stages:',
 
@@ -171,24 +188,35 @@ export const translations = {
     table_diff: 'DIFF',
     table_points: 'PTS',
     legend_playoff_zone: 'Playoffs Zone (Top 16)',
+    top_16_qualifies: 'TOP 16 QUALIFIES',
     legend_elimination: 'Elimination (17th to 22nd)',
     legend_realtime: 'Updated in real time',
     no_teams_found: 'No teams found for',
 
     // Rounds Filter
     round: 'Round',
+    filter_label: 'Filter:',
     filter_all: 'All',
     filter_completed: 'Completed',
     filter_pending: 'Pending',
+    filter_matches_team: 'Filtering team matches:',
     filter_by_team: 'Filtering by',
     clear_filter: 'Clear filter',
     no_matches_found: 'No matches found.',
+    match_status_completed: 'Completed',
+    match_status_pending: 'Pending',
 
-    // Footer & Controls
+    // Tooltips & Footer Controls
     theme: 'Theme',
     theme_light: 'Light',
     theme_dark: 'Dark',
     theme_system: 'System',
+    tooltip_theme_light: 'Enable Light theme',
+    tooltip_theme_dark: 'Enable Dark theme',
+    tooltip_theme_system: 'Follow system settings',
+    tooltip_lang_en: 'Switch to English',
+    tooltip_lang_pt: 'Switch to Portuguese',
+    tooltip_lang_es: 'Switch to Spanish',
     language: 'Language',
     footer_sync: '// Real-time synchronized tournament display system',
     sponsor: 'Sponsors:',
@@ -234,7 +262,7 @@ export const translations = {
     stage_finals_title: 'Gran Final',
     stage_finals_sub: '2 finalistas • BO5 Cashout Final',
 
-    // Bracket Cards
+    // Bracket Cards & Highlights
     group: 'Grupo',
     group_label: 'Grupo',
     match_game: 'Partida',
@@ -247,6 +275,9 @@ export const translations = {
     status_finalist: 'Finalista',
     status_champion: 'Campeón',
     status_eliminated: 'Eliminado',
+    champion_showdown_banner: 'Campeón Showdown 2026',
+    highlighting_team: 'Destacando equipo',
+    clear_highlight: 'Limpiar destacado',
     trophy_title: 'Trofeo Showdown 2026',
     stage_navigation: 'Fases:',
 
@@ -268,24 +299,35 @@ export const translations = {
     table_diff: 'DIF',
     table_points: 'PTS',
     legend_playoff_zone: 'Zona de Playoffs (Top 16)',
+    top_16_qualifies: 'TOP 16 CLASIFICA',
     legend_elimination: 'Eliminación (17º al 22º)',
     legend_realtime: 'Actualizado en tiempo real',
     no_teams_found: 'No se encontraron equipos para',
 
     // Rounds Filter
     round: 'Ronda',
-    filter_all: 'Todos',
-    filter_completed: 'Completados',
+    filter_label: 'Filtrar:',
+    filter_all: 'Todas',
+    filter_completed: 'Completadas',
     filter_pending: 'Pendientes',
+    filter_matches_team: 'Filtrando partidas del equipo:',
     filter_by_team: 'Filtrando por',
     clear_filter: 'Limpiar filtro',
     no_matches_found: 'No se encontraron partidas.',
+    match_status_completed: 'Completada',
+    match_status_pending: 'Pendiente',
 
-    // Footer & Controls
+    // Tooltips & Footer Controls
     theme: 'Tema',
     theme_light: 'Claro',
     theme_dark: 'Oscuro',
     theme_system: 'Sistema',
+    tooltip_theme_light: 'Activar tema Claro',
+    tooltip_theme_dark: 'Activar tema Oscuro',
+    tooltip_theme_system: 'Seguir configuración del sistema',
+    tooltip_lang_en: 'Cambiar a Inglés',
+    tooltip_lang_pt: 'Cambiar a Portugués',
+    tooltip_lang_es: 'Cambiar a Español',
     language: 'Idioma',
     footer_sync: '// Sistema de visualización con sincronización en tiempo real',
     sponsor: 'Patrocinio:',

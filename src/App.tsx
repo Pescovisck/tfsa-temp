@@ -54,7 +54,7 @@ const RoundsView: React.FC<RoundsViewProps> = ({
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-[#8c6310] dark:text-[#f5da8a]" />
             <span className="text-slate-700 dark:text-zinc-300">
-              {t('filter_by_team', 'Filtrando confrontos da equipe')}: <strong className="text-slate-950 dark:text-white font-bold">{selectedTeamFilter}</strong>
+              {t('filter_matches_team', 'Filtrando confrontos da equipe:')} <strong className="text-slate-950 dark:text-white font-bold">{selectedTeamFilter}</strong>
             </span>
           </div>
           <button
@@ -99,7 +99,7 @@ const RoundsView: React.FC<RoundsViewProps> = ({
       {/* Filter bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 bg-white dark:bg-[#161618] p-3 rounded-2xl border border-slate-200/80 dark:border-zinc-800 shadow-sm">
         <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-500 dark:text-zinc-400 font-mono">{t('filter_all', 'Filtrar')}:</span>
+          <span className="text-xs text-slate-500 dark:text-zinc-400 font-mono">{t('filter_label', 'Filtrar:')}</span>
           <div className="inline-flex rounded-xl bg-slate-100 dark:bg-[#202024] p-1 font-mono">
             <button
               onClick={() => setFilterStatus('all')}
@@ -156,12 +156,12 @@ const RoundsView: React.FC<RoundsViewProps> = ({
                     {hasScore ? (
                       <span className="inline-flex items-center text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase gap-1 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
                         <CheckCircle2 className="w-3 h-3" />
-                        {t('filter_completed', 'Finalizado')}
+                        {t('match_status_completed', 'Finalizado')}
                       </span>
                     ) : (
                       <span className="inline-flex items-center text-slate-400 dark:text-zinc-500 text-[10px] font-medium uppercase gap-1 bg-slate-100 dark:bg-zinc-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-zinc-700">
                         <Clock className="w-3 h-3" />
-                        {t('filter_pending', 'Pendente')}
+                        {t('match_status_pending', 'Pendente')}
                       </span>
                     )}
                   </div>
@@ -500,7 +500,7 @@ export function App() {
                     (language === 'en'
                       ? 'bg-white dark:bg-[#2a2a30] text-slate-950 dark:text-[#f5da8a] shadow-sm'
                       : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white')}
-                  title="Switch to English"
+                  title={t('tooltip_lang_en', 'Switch to English')}
                 >
                   EN
                 </button>
@@ -510,7 +510,7 @@ export function App() {
                     (language === 'pt'
                       ? 'bg-white dark:bg-[#2a2a30] text-slate-950 dark:text-[#f5da8a] shadow-sm'
                       : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white')}
-                  title="Mudar para Português"
+                  title={t('tooltip_lang_pt', 'Mudar para Português')}
                 >
                   PT
                 </button>
@@ -520,7 +520,7 @@ export function App() {
                     (language === 'es'
                       ? 'bg-white dark:bg-[#2a2a30] text-slate-950 dark:text-[#f5da8a] shadow-sm'
                       : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white')}
-                  title="Cambiar a Español"
+                  title={t('tooltip_lang_es', 'Cambiar a Español')}
                 >
                   ES
                 </button>
@@ -537,7 +537,7 @@ export function App() {
                     (theme === 'light'
                       ? 'bg-white text-slate-950 shadow-sm font-bold'
                       : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white')}
-                  title={t('theme_light', 'Ativar tema Claro')}
+                  title={t('tooltip_theme_light', 'Ativar tema Claro')}
                 >
                   <Sun className="w-3.5 h-3.5 text-amber-500" />
                   <span>{t('theme_light', 'Claro')}</span>
@@ -549,7 +549,7 @@ export function App() {
                     (theme === 'dark'
                       ? 'bg-white text-slate-950 dark:bg-[#2a2a30] dark:text-[#f5da8a] shadow-sm font-bold'
                       : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white')}
-                  title={t('theme_dark', 'Ativar tema Escuro')}
+                  title={t('tooltip_theme_dark', 'Ativar tema Escuro')}
                 >
                   <Moon className="w-3.5 h-3.5 text-indigo-400" />
                   <span>{t('theme_dark', 'Escuro')}</span>
@@ -561,7 +561,7 @@ export function App() {
                     (theme === 'system'
                       ? 'bg-white text-slate-950 dark:bg-[#2a2a30] dark:text-white shadow-sm font-bold'
                       : 'text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white')}
-                  title={t('theme_system', 'Seguir configuração do sistema/navegador')}
+                  title={t('tooltip_theme_system', 'Seguir configuração do sistema')}
                 >
                   <Monitor className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
                   <span>{t('theme_system', 'Sistema')}</span>
