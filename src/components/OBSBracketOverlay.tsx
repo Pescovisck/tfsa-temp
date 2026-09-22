@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { BracketData, BracketGroup, BracketGroupTeam } from '../types/tournament';
-import { Trophy, Crown, CheckCircle2, RefreshCw, Copy, Check, Tv, Sliders, ChevronRight } from 'lucide-react';
+import { Trophy, Crown, CheckCircle2, RefreshCw, Copy, Check, Tv, Sliders, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import type { TranslationKey } from '../i18n/translations';
 
@@ -85,9 +85,13 @@ export const OBSBracketOverlay: React.FC<OBSBracketOverlayProps> = ({
     }
   };
 
-  // Find champion team if Finals are decided
-  const finalsStage = stages.find(s => s.id === 'finals');
-  const finalsGroup = finalsStage?.groups[0];
+  // Find individual stages
+  const stage1 = stages.find(s => s.id === 'stage_1') || stages[0];
+  const stage2 = stages.find(s => s.id === 'best_of_8') || stages[1];
+  const stage3 = stages.find(s => s.id === 'semi_finals') || stages[2];
+  const stage4 = stages.find(s => s.id === 'finals') || stages[3];
+
+  const finalsGroup = stage4?.groups[0];
   const championTeam = finalsGroup?.teams.find(tm => tm.isWinner);
 
   return (
@@ -96,10 +100,10 @@ export const OBSBracketOverlay: React.FC<OBSBracketOverlayProps> = ({
       className="w-screen h-screen max-h-screen overflow-hidden flex flex-col justify-between p-3 sm:p-5 select-none relative font-sans text-white"
     >
       {/* --- Broadcast Top Bar --- */}
-      <header className="flex items-center justify-between gap-4 pb-2.5 border-b border-white/10 shrink-0 z-10">
+      <header className="flex items-center justify-between gap-4 pb-2 border-b border-white/10 shrink-0 z-10">
         {/* Left: Tournament & Logo Brand */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-black shadow-md shrink-0">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-black shadow-md shrink-0">
             <Trophy className="w-5 h-5" />
           </div>
           <div>
@@ -185,121 +189,191 @@ export const OBSBracketOverlay: React.FC<OBSBracketOverlayProps> = ({
         </div>
       </header>
 
-      {/* --- Main Bracket Flow Canvas --- */}
-      <main className="flex-1 my-2 overflow-hidden flex flex-col justify-center relative z-0">
+      {/* --- Main Bracket Flow Canvas: Centered and Compact --- */}
+      <main className="flex-1 my-auto overflow-hidden flex items-center justify-center relative z-0 min-h-0">
         {activeStageId === 'all' ? (
-          /* Full Bracket Flow: 4 Stages Progression */
-          <div className="grid grid-cols-4 gap-3 lg:gap-5 h-full items-stretch relative">
-            {stages.map((stage, sIdx) => {
-              const stageTitle = t(stage.titleKey as TranslationKey, stage.defaultTitle);
-              const isFinal = stage.id === 'finals';
+          /* Full Bracket Flow: Centered, minimal width, connected by branching SVG arrows */
+          <div className="w-fit max-w-full mx-auto flex items-center justify-center gap-1 sm:gap-1.5 h-full max-h-[82vh]">
+            
+            {/* COLUMN 1: Stage 1 (Fase de Grupos - 4 grupos) */}
+            {stage1 && (
+              <div className="w-[230px] sm:w-[245px] xl:w-[260px] h-full flex flex-col justify-between shrink-0">
+                <div className="px-2.5 py-1 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md mb-1.5 flex items-center justify-between shrink-0">
+                  <span className="font-black font-['Teko',sans-serif] tracking-wider uppercase text-sm sm:text-base leading-none text-white">
+                    {t(stage1.titleKey as TranslationKey, stage1.defaultTitle)}
+                  </span>
+                  <span className="text-[9px] font-mono font-bold uppercase px-1.5 py-0.2 rounded bg-white/10 text-zinc-300">
+                    {stage1.groups[0]?.format || 'MD3'}
+                  </span>
+                </div>
 
-              return (
-                <div
-                  key={stage.id}
-                  className="flex flex-col h-full justify-between relative"
-                >
-                  {/* Stage Header Banner */}
-                  <div className={'px-3 py-1.5 rounded-xl border backdrop-blur-md mb-2 flex items-center justify-between shrink-0 ' +
-                    (isFinal
-                      ? 'bg-gradient-to-r from-amber-500/20 to-black/60 border-[#c5a059]'
-                      : 'bg-black/60 border-white/10')}>
-                    <div className="flex items-center gap-1.5">
-                      {isFinal ? (
-                        <Crown className="w-3.5 h-3.5 text-[#ecc975]" />
-                      ) : (
-                        <span className="text-[10px] font-mono font-bold text-[#c5a059] uppercase">
-                          E{sIdx + 1}
-                        </span>
-                      )}
-                      <h2 className="text-base sm:text-lg font-black font-['Teko',sans-serif] tracking-wider uppercase leading-none text-white">
-                        {stageTitle}
-                      </h2>
-                    </div>
-                    <span className="text-[9px] font-mono font-bold uppercase px-1.5 py-0.5 rounded bg-white/10 text-zinc-300 border border-white/10">
-                      {stage.groups[0]?.format || 'MD3'}
+                <div className="flex-1 flex flex-col justify-between gap-1.5 min-h-0">
+                  {stage1.groups.map(group => (
+                    <OBSGroupCard key={group.id} group={group} t={t} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* FLOW CONNECTOR 1 -> 2: Branching curves from Groups A/B -> Top 8 A, and Groups C/D -> Top 8 B */}
+            <div className="w-7 sm:w-8 shrink-0 h-full flex flex-col justify-center relative">
+              <svg viewBox="0 0 32 100" preserveAspectRatio="none" className="w-full h-full overflow-visible pointer-events-none">
+                <defs>
+                  <linearGradient id="goldFlow1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#c5a059" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#ecc975" stopOpacity="1" />
+                  </linearGradient>
+                  <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                    <polygon points="0 0, 6 3, 0 6" fill="#ecc975" />
+                  </marker>
+                </defs>
+                {/* Groups A (13%) and B (38%) merge into Top 8 Group A (26%) */}
+                <path d="M 0 13 C 18 13, 14 26, 28 26" fill="none" stroke="url(#goldFlow1)" strokeWidth="2" markerEnd="url(#arrowhead)" />
+                <path d="M 0 38 C 18 38, 14 26, 28 26" fill="none" stroke="url(#goldFlow1)" strokeWidth="2" markerEnd="url(#arrowhead)" />
+                
+                {/* Groups C (63%) and D (88%) merge into Top 8 Group B (74%) */}
+                <path d="M 0 63 C 18 63, 14 74, 28 74" fill="none" stroke="url(#goldFlow1)" strokeWidth="2" markerEnd="url(#arrowhead)" />
+                <path d="M 0 88 C 18 88, 14 74, 28 74" fill="none" stroke="url(#goldFlow1)" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              </svg>
+            </div>
+
+            {/* COLUMN 2: Stage 2 (Top 8 - 2 grupos) */}
+            {stage2 && (
+              <div className="w-[230px] sm:w-[245px] xl:w-[260px] h-full flex flex-col justify-between shrink-0">
+                <div className="px-2.5 py-1 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md mb-1.5 flex items-center justify-between shrink-0">
+                  <span className="font-black font-['Teko',sans-serif] tracking-wider uppercase text-sm sm:text-base leading-none text-white">
+                    {t(stage2.titleKey as TranslationKey, stage2.defaultTitle)}
+                  </span>
+                  <span className="text-[9px] font-mono font-bold uppercase px-1.5 py-0.2 rounded bg-white/10 text-zinc-300">
+                    {stage2.groups[0]?.format || 'MD3'}
+                  </span>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-around gap-4 min-h-0">
+                  {stage2.groups.map(group => (
+                    <OBSGroupCard key={group.id} group={group} t={t} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* FLOW CONNECTOR 2 -> 3: Branching curves from Top 8 A (26%) and B (74%) into Semifinals (50%) */}
+            <div className="w-7 sm:w-8 shrink-0 h-full flex flex-col justify-center relative">
+              <svg viewBox="0 0 32 100" preserveAspectRatio="none" className="w-full h-full overflow-visible pointer-events-none">
+                {/* Merge Top 8 A & B into Semifinals */}
+                <path d="M 0 26 C 18 26, 14 50, 28 50" fill="none" stroke="url(#goldFlow1)" strokeWidth="2" markerEnd="url(#arrowhead)" />
+                <path d="M 0 74 C 18 74, 14 50, 28 50" fill="none" stroke="url(#goldFlow1)" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              </svg>
+            </div>
+
+            {/* COLUMN 3: Stage 3 (Semifinais - 1 grupo) */}
+            {stage3 && (
+              <div className="w-[230px] sm:w-[245px] xl:w-[260px] h-full flex flex-col justify-between shrink-0">
+                <div className="px-2.5 py-1 rounded-xl bg-black/60 border border-white/10 backdrop-blur-md mb-1.5 flex items-center justify-between shrink-0">
+                  <span className="font-black font-['Teko',sans-serif] tracking-wider uppercase text-sm sm:text-base leading-none text-white">
+                    {t(stage3.titleKey as TranslationKey, stage3.defaultTitle)}
+                  </span>
+                  <span className="text-[9px] font-mono font-bold uppercase px-1.5 py-0.2 rounded bg-white/10 text-zinc-300">
+                    {stage3.groups[0]?.format || 'MD3'}
+                  </span>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-center gap-2 min-h-0">
+                  {stage3.groups.map(group => (
+                    <OBSGroupCard key={group.id} group={group} t={t} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* FLOW CONNECTOR 3 -> 4: Straight arrow into Grande Final */}
+            <div className="w-7 sm:w-8 shrink-0 h-full flex flex-col justify-center relative">
+              <svg viewBox="0 0 32 100" preserveAspectRatio="none" className="w-full h-full overflow-visible pointer-events-none">
+                <path d="M 0 50 L 28 50" fill="none" stroke="url(#goldFlow1)" strokeWidth="2" markerEnd="url(#arrowhead)" />
+              </svg>
+            </div>
+
+            {/* COLUMN 4: Stage 4 (Grande Final & Campeão) */}
+            {stage4 && (
+              <div className="w-[235px] sm:w-[250px] xl:w-[265px] h-full flex flex-col justify-between shrink-0">
+                <div className="px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500/20 to-black/60 border border-[#c5a059] backdrop-blur-md mb-1.5 flex items-center justify-between shrink-0">
+                  <div className="flex items-center gap-1.5">
+                    <Crown className="w-3.5 h-3.5 text-[#ecc975]" />
+                    <span className="font-black font-['Teko',sans-serif] tracking-wider uppercase text-sm sm:text-base leading-none text-white">
+                      {t(stage4.titleKey as TranslationKey, stage4.defaultTitle)}
                     </span>
                   </div>
+                  <span className="text-[9px] font-mono font-bold uppercase px-1.5 py-0.2 rounded bg-white/10 text-zinc-300">
+                    {stage4.groups[0]?.format || 'MD5'}
+                  </span>
+                </div>
 
-                  {/* Groups Container: Vertically Distributed */}
-                  <div className={'flex-1 flex flex-col ' +
-                    (stage.groups.length === 4
-                      ? 'justify-between gap-1.5'
-                      : stage.groups.length === 2
-                        ? 'justify-around gap-3'
-                        : 'justify-center gap-3')
-                  }>
-                    {stage.groups.map((group) => (
-                      <OBSGroupCard
-                        key={group.id}
-                        group={group}
-                        isFinal={isFinal}
-                        t={t}
-                      />
-                    ))}
+                <div className="flex-1 flex flex-col justify-center min-h-0">
+                  {/* Finals Group Card */}
+                  {stage4.groups.map(group => (
+                    <OBSGroupCard key={group.id} group={group} isFinal t={t} />
+                  ))}
 
-                    {/* If Finals Stage, show Champion Spotlight if available */}
-                    {isFinal && (
-                      <div className="mt-2 p-3 rounded-2xl bg-gradient-to-r from-amber-500/20 via-amber-400/10 to-black/70 border-2 border-[#c5a059] shadow-[0_4px_20px_rgba(197,160,89,0.25)] flex items-center gap-3 shrink-0">
-                        <div className="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-black shrink-0 shadow">
-                          <Trophy className="w-5 h-5" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="text-[9px] font-mono font-bold text-[#c5a059] uppercase tracking-wider flex items-center gap-1">
-                            <Crown className="w-3 h-3 text-[#c5a059]" />
-                            {t('champion_showdown_banner', 'Campeão Showdown 2026')}
-                          </div>
-                          <div className="text-xl sm:text-2xl font-black font-['Teko',sans-serif] tracking-wider uppercase text-white truncate leading-none">
-                            {championTeam ? championTeam.team : t('tbd', 'A definir')}
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                  {/* Flow Arrow Down into Champion */}
+                  <div className="flex flex-col items-center my-1 text-[#ecc975]">
+                    <div className="w-0.5 h-2.5 bg-gradient-to-b from-[#c5a059] to-[#ecc975]"></div>
+                    <ChevronDown className="w-4 h-4 text-[#ecc975] -mt-1 drop-shadow" />
                   </div>
 
-                  {/* Flow Arrow to Next Stage (between columns) */}
-                  {sIdx < stages.length - 1 && (
-                    <div className="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 text-[#c5a059]/40 pointer-events-none">
-                      <ChevronRight className="w-5 h-5" />
+                  {/* Champion Spotlight Card */}
+                  <div className="p-2.5 rounded-xl bg-gradient-to-r from-amber-500/20 via-amber-400/10 to-black/80 border-2 border-[#c5a059] shadow-[0_4px_20px_rgba(197,160,89,0.25)] flex items-center gap-2.5 shrink-0">
+                    <div className="w-8 h-8 rounded-lg gold-gradient-bg flex items-center justify-center text-black shrink-0 shadow">
+                      <Trophy className="w-4 h-4" />
                     </div>
-                  )}
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[8px] font-mono font-bold text-[#c5a059] uppercase tracking-wider flex items-center gap-1 leading-tight">
+                        <Crown className="w-2.5 h-2.5 text-[#c5a059]" />
+                        {t('champion_showdown_banner', 'Campeão Showdown 2026')}
+                      </div>
+                      <div className="text-base sm:text-lg font-black font-['Teko',sans-serif] tracking-wider uppercase text-white truncate leading-none mt-0.5">
+                        {championTeam ? championTeam.team : t('tbd', 'A definir')}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              );
-            })}
+              </div>
+            )}
+
           </div>
         ) : (
-          /* Focused Stage View: Zoom in on single stage */
-          <div className="h-full flex flex-col justify-center">
+          /* Focused Stage View: Zoom in on single stage, also centered & compact */
+          <div className="h-full flex flex-col justify-center max-w-5xl mx-auto w-full">
             {stages.filter(s => s.id === activeStageId).map((stage) => {
               const stageTitle = t(stage.titleKey as TranslationKey, stage.defaultTitle);
               const isFinal = stage.id === 'finals';
 
               return (
-                <div key={stage.id} className="h-full flex flex-col justify-center max-w-6xl mx-auto w-full">
+                <div key={stage.id} className="flex flex-col justify-center w-full">
                   <div className="mb-4 text-center">
-                    <span className="px-3 py-1 rounded-full bg-[#c5a059]/20 text-[#ecc975] border border-[#c5a059]/40 font-mono text-xs font-bold uppercase tracking-wider">
+                    <span className="px-3 py-0.5 rounded-full bg-[#c5a059]/20 text-[#ecc975] border border-[#c5a059]/40 font-mono text-xs font-bold uppercase tracking-wider">
                       {stage.groups[0]?.format || 'MD3'} • {isFinal ? t('obs_finalists_count', '2 Finalistas') : t('top_2_advance', 'Top 2 avançam')}
                     </span>
-                    <h2 className="text-4xl sm:text-5xl font-black font-['Teko',sans-serif] tracking-wider uppercase text-white mt-1">
+                    <h2 className="text-3xl sm:text-4xl font-black font-['Teko',sans-serif] tracking-wider uppercase text-white mt-1">
                       {stageTitle}
                     </h2>
                   </div>
 
-                  <div className={'grid gap-4 ' +
+                  <div className={'grid gap-3 sm:gap-4 justify-center ' +
                     (stage.groups.length === 4
                       ? 'grid-cols-2 lg:grid-cols-4'
                       : stage.groups.length === 2
-                        ? 'grid-cols-2 max-w-3xl mx-auto w-full'
-                        : 'grid-cols-1 max-w-xl mx-auto w-full')
+                        ? 'grid-cols-2 max-w-2xl mx-auto w-full'
+                        : 'grid-cols-1 max-w-md mx-auto w-full')
                   }>
                     {stage.groups.map(group => (
-                      <OBSGroupCard
-                        key={group.id}
-                        group={group}
-                        isFinal={isFinal}
-                        t={t}
-                        expanded
-                      />
+                      <div key={group.id} className="w-[245px] sm:w-[260px]">
+                        <OBSGroupCard
+                          group={group}
+                          isFinal={isFinal}
+                          t={t}
+                          expanded
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -432,7 +506,7 @@ export const OBSBracketOverlay: React.FC<OBSBracketOverlayProps> = ({
   );
 };
 
-/* --- Compact OBS Group Card Subcomponent --- */
+/* --- Compact OBS Group Card Subcomponent with Points from Each Match --- */
 interface OBSGroupCardProps {
   group: BracketGroup;
   isFinal?: boolean;
@@ -446,14 +520,16 @@ const OBSGroupCard: React.FC<OBSGroupCardProps> = ({
   t,
   expanded = false,
 }) => {
+  const numMatches = group.format === 'MD5' ? 5 : 3;
+
   return (
     <div className={'rounded-xl border backdrop-blur-md overflow-hidden transition-all ' +
       (isFinal
         ? 'bg-black/85 border-2 border-[#c5a059] shadow-[0_4px_25px_rgba(197,160,89,0.3)]'
-        : 'bg-black/75 border-white/10 shadow-lg')}>
+        : 'bg-black/75 border-white/10 shadow-md')}>
       
       {/* Group Title Bar */}
-      <div className="px-2.5 py-1 bg-white/5 border-b border-white/10 flex items-center justify-between">
+      <div className="px-2 py-1 bg-white/5 border-b border-white/10 flex items-center justify-between">
         <span className="font-bold text-xs font-['Teko',sans-serif] tracking-wider uppercase text-[#ecc975] leading-none">
           {group.name.replace(/^Grupo/i, t('group_label', 'Grupo'))}
         </span>
@@ -462,8 +538,23 @@ const OBSGroupCard: React.FC<OBSGroupCardProps> = ({
         </span>
       </div>
 
+      {/* Match Point Column Headers */}
+      <div className="px-2 py-0.5 bg-white/[0.03] border-b border-white/5 flex items-center justify-between text-[8px] font-mono text-zinc-400">
+        <span className="uppercase tracking-wider">{t('table_team', 'Equipe')}</span>
+        <div className="flex items-center gap-1 shrink-0">
+          {Array.from({ length: numMatches }).map((_, mIdx) => (
+            <span key={mIdx} className="w-4 sm:w-5 text-center font-bold text-zinc-500">
+              #{mIdx + 1}
+            </span>
+          ))}
+          <span className="w-5 sm:w-6 text-center font-bold text-[#ecc975]">
+            {t('table_points', 'PTS')}
+          </span>
+        </div>
+      </div>
+
       {/* Team Rows */}
-      <div className="p-1 sm:p-1.5 space-y-1">
+      <div className="p-1 space-y-0.5 sm:space-y-1">
         {group.teams.map((tRow: BracketGroupTeam, idx: number) => {
           const isTbd = !tRow.team || tRow.team === '-';
           const isWinner = tRow.isWinner;
@@ -472,8 +563,8 @@ const OBSGroupCard: React.FC<OBSGroupCardProps> = ({
           return (
             <div
               key={idx}
-              className={'flex items-center justify-between px-2 rounded-lg transition-all ' +
-                (expanded ? 'py-2 ' : 'py-1 ') +
+              className={'flex items-center justify-between px-1.5 rounded-lg transition-all ' +
+                (expanded ? 'py-1.5 ' : 'py-0.5 sm:py-1 ') +
                 (isWinner
                   ? 'bg-amber-500/20 border border-[#c5a059]'
                   : isQualified
@@ -482,7 +573,7 @@ const OBSGroupCard: React.FC<OBSGroupCardProps> = ({
               }
             >
               {/* Left: Rank & Team Name */}
-              <div className="flex items-center gap-1.5 min-w-0 flex-1 pr-1.5">
+              <div className="flex items-center gap-1.5 min-w-0 flex-1 pr-1">
                 {/* Status indicator */}
                 {isWinner ? (
                   <Crown className="w-3 h-3 text-[#ecc975] shrink-0" />
@@ -507,21 +598,29 @@ const OBSGroupCard: React.FC<OBSGroupCardProps> = ({
                 </span>
               </div>
 
-              {/* Right: Total Points */}
-              <div className="flex items-center gap-1 shrink-0">
-                {isQualified && !isWinner && (
-                  <span className="hidden sm:inline text-[8px] font-mono font-bold uppercase text-emerald-400 px-1 rounded bg-emerald-500/20">
-                    {t('status_qualified', 'Avança')}
-                  </span>
-                )}
-                {isWinner && (
-                  <span className="text-[8px] font-mono font-black uppercase text-black px-1.5 py-0.2 rounded gold-gradient-bg">
-                    {t('status_champion', 'Campeão')}
-                  </span>
-                )}
-                <span className={'font-mono font-bold text-right min-w-5 ' +
-                  (expanded ? 'text-xs ' : 'text-[11px] ') +
-                  (isWinner ? 'text-amber-300 font-black' : 'text-zinc-300')}>
+              {/* Right: Individual Match Scores + Total */}
+              <div className="flex items-center gap-1 shrink-0 font-mono">
+                {Array.from({ length: numMatches }).map((_, mIdx) => {
+                  const score = tRow.scores[mIdx];
+                  const hasScore = score !== null && score !== undefined;
+                  return (
+                    <span
+                      key={mIdx}
+                      className="w-4 sm:w-5 h-4 sm:h-5 rounded bg-black/40 border border-white/10 flex items-center justify-center text-[10px] text-zinc-300 font-semibold"
+                      title={`${t('match_game', 'Partida')} ${mIdx + 1}: ${hasScore ? score : '-'}`}
+                    >
+                      {hasScore ? score : '-'}
+                    </span>
+                  );
+                })}
+
+                {/* Total Points */}
+                <span className={'w-5 sm:w-6 h-4 sm:h-5 rounded text-center flex items-center justify-center text-[10px] sm:text-[11px] font-bold ' +
+                  (isWinner
+                    ? 'gold-gradient-bg text-black font-black shadow-sm'
+                    : isQualified
+                      ? 'bg-amber-400/20 text-[#ecc975] border border-[#c5a059]/40'
+                      : 'bg-white/10 text-zinc-200')}>
                   {tRow.total ?? 0}
                 </span>
               </div>
