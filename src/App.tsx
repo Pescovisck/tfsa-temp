@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Podium } from './components/Podium';
 import { StandingsTable } from './components/StandingsTable';
 import { BracketView } from './components/BracketView';
+import { OBSBracketOverlay } from './components/OBSBracketOverlay';
 import type { TournamentData, Round } from './types/tournament';
 import { parseTournamentCSV } from './utils/csvParser';
 import { RAW_INITIAL_CSV, RAW_BRACKET_CSV } from './data/initialData';
@@ -11,7 +12,7 @@ import {
   parseBracketCSV,
   DEFAULT_SHEET_URL,
 } from './utils/googleSheets';
-import { Trophy, Swords, CheckCircle2, Clock, Filter, Calendar, Users, Sparkles, Sun, Moon, Monitor, Globe } from 'lucide-react';
+import { Trophy, Swords, CheckCircle2, Clock, Filter, Calendar, Users, Sparkles, Sun, Moon, Monitor, Globe, Tv } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 import { useLanguage } from './hooks/useLanguage';
 
@@ -233,12 +234,47 @@ export function App() {
     return 'main';
   });
 
+  // OBS Overlay Routing: /obs, /bracket-obs, ?obs=1, ?view=bracket, #/obs
+  const [isObsView, setIsObsView] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    const path = window.location.pathname.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    const search = new URLSearchParams(window.location.search);
+    return (
+      path.includes('/obs') ||
+      path.includes('/bracket-obs') ||
+      path.includes('/overlay') ||
+      hash.includes('obs') ||
+      hash.includes('overlay') ||
+      search.has('obs') ||
+      search.get('view') === 'bracket' ||
+      search.get('view') === 'obs'
+    );
+  });
+
   useEffect(() => {
     const handleHashChange = () => {
       setCurrentPage(window.location.hash === '#seeding' ? 'seeding' : 'main');
+      const path = window.location.pathname.toLowerCase();
+      const hash = window.location.hash.toLowerCase();
+      const search = new URLSearchParams(window.location.search);
+      setIsObsView(
+        path.includes('/obs') ||
+        path.includes('/bracket-obs') ||
+        path.includes('/overlay') ||
+        hash.includes('obs') ||
+        hash.includes('overlay') ||
+        search.has('obs') ||
+        search.get('view') === 'bracket' ||
+        search.get('view') === 'obs'
+      );
     };
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handleHashChange);
+    };
   }, []);
 
   const handleNavigate = (page: 'main' | 'seeding') => {
@@ -301,6 +337,18 @@ export function App() {
     setSelectedTeamFilter(team);
     setActiveTab('rounds');
   };
+
+  // OBS Dedicated Broadcast Stream View
+  if (isObsView) {
+    return (
+      <OBSBracketOverlay
+        bracketData={tournamentData.bracket}
+        onRefresh={() => loadData(sheetUrl)}
+        isLoading={isLoading}
+        lastUpdated={tournamentData.lastUpdated}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#f2f5f9] dark:bg-[#121214] text-slate-900 dark:text-zinc-100 flex flex-col font-sans selection:bg-[#c5a059] selection:text-black transition-colors duration-200">
@@ -569,6 +617,20 @@ export function App() {
               </div>
             </div>
 
+          </div>
+
+          {/* OBS Stream Overlay Link */}
+          <div className="pt-2 flex items-center justify-center">
+            <a
+              href="/obs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-mono text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white bg-slate-100 dark:bg-[#1c1c20] hover:bg-slate-200 dark:hover:bg-[#282830] transition-all border border-slate-200 dark:border-zinc-800 shadow-sm"
+              title="Abrir overlay otimizado para Browser Source no OBS Studio"
+            >
+              <Tv className="w-3.5 h-3.5 text-[#c5a059]" />
+              <span className="font-semibold">{t('obs_overlay_btn', 'Overlay OBS (Transmissão)')}</span>
+            </a>
           </div>
 
           {/* Discreet Sponsor Credit */}

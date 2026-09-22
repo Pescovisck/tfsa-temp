@@ -110,6 +110,21 @@ export const translations = {
     footer_sync: '// Sistema de exibição com sincronização em tempo real',
     sponsor: 'Patrocínio:',
     copyright: 'Todos os direitos reservados.',
+
+    // OBS Overlay
+    obs_title: 'CHAVEAMENTO SHOWDOWN',
+    obs_flow_all: 'Fluxo Completo',
+    obs_bg_mode: 'Fundo OBS:',
+    obs_bg_transparent: 'Transparente',
+    obs_bg_green: 'Chroma Green',
+    obs_bg_dark: 'Dark Studio',
+    obs_bg_studio: 'Cinza Neutro',
+    obs_copy_url: 'Copiar Link OBS',
+    obs_copied: 'Copiado!',
+    obs_overlay_btn: 'Overlay OBS (Transmissão)',
+    obs_auto_sync: 'Sincronização em tempo real',
+    obs_panel_title: 'Painel de Transmissão OBS',
+    obs_finalists_count: '2 Finalistas',
   },
 
   en: {
@@ -221,6 +236,21 @@ export const translations = {
     footer_sync: '// Real-time synchronized tournament display system',
     sponsor: 'Sponsors:',
     copyright: 'All rights reserved.',
+
+    // OBS Overlay
+    obs_title: 'SHOWDOWN BRACKET',
+    obs_flow_all: 'Full Bracket',
+    obs_bg_mode: 'OBS Backdrop:',
+    obs_bg_transparent: 'Transparent',
+    obs_bg_green: 'Chroma Green',
+    obs_bg_dark: 'Dark Studio',
+    obs_bg_studio: 'Neutral Slate',
+    obs_copy_url: 'Copy OBS URL',
+    obs_copied: 'Copied!',
+    obs_overlay_btn: 'OBS Overlay (Broadcast)',
+    obs_auto_sync: 'Real-time auto sync',
+    obs_panel_title: 'OBS Broadcast Panel',
+    obs_finalists_count: '2 Finalists',
   },
 
   es: {
@@ -332,6 +362,21 @@ export const translations = {
     footer_sync: '// Sistema de visualización con sincronización en tiempo real',
     sponsor: 'Patrocinio:',
     copyright: 'Todos los derechos reservados.',
+
+    // OBS Overlay
+    obs_title: 'CUADRO SHOWDOWN',
+    obs_flow_all: 'Cuadro Completo',
+    obs_bg_mode: 'Fondo OBS:',
+    obs_bg_transparent: 'Transparente',
+    obs_bg_green: 'Chroma Green',
+    obs_bg_dark: 'Dark Studio',
+    obs_bg_studio: 'Gris Neutro',
+    obs_copy_url: 'Copiar Link OBS',
+    obs_copied: '¡Copiado!',
+    obs_overlay_btn: 'Overlay OBS (Transmisión)',
+    obs_auto_sync: 'Sincronización en tiempo real',
+    obs_panel_title: 'Panel de Transmisión OBS',
+    obs_finalists_count: '2 Finalistas',
   },
 } as const;
 

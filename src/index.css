@@ -27,6 +27,14 @@
     background-repeat: no-repeat, no-repeat, repeat;
   }
 
+  html.obs-mode, html.obs-mode body {
+    background: transparent !important;
+    background-image: none !important;
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100vw !important;
+  }
+
   h1, h2, h3, .font-display {
     font-family: 'Teko', 'Bebas Neue', 'Chakra Petch', sans-serif;
     letter-spacing: 0.04em;
