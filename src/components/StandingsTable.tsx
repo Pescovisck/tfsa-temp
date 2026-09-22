@@ -161,7 +161,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
             {sortedStandings.length === 0 ? (
               <tr>
                 <td colSpan={6} className="text-center py-10 text-slate-400 dark:text-zinc-500 text-xs">
-                  Nenhuma equipe encontrada para "{searchTerm}"
+                  {t('no_teams_found', 'Nenhuma equipe encontrada para')} "{searchTerm}"
                 </td>
               </tr>
             ) : (
@@ -198,7 +198,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
                           </>
                         ) : (
                           <span className="hidden md:inline-block px-1.5 sm:px-2 py-0.5 text-[9px] font-bold uppercase bg-slate-100 dark:bg-zinc-800 text-slate-400 dark:text-zinc-400 border border-slate-200 dark:border-zinc-700 rounded font-mono flex-shrink-0">
-                            Eliminado
+                            {t('status_eliminated', 'Eliminado')}
                           </span>
                         )}
                       </div>
@@ -242,7 +242,7 @@ export const StandingsTable: React.FC<StandingsTableProps> = ({ standings, onSel
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-slate-300 dark:bg-zinc-700"></span>
-            <span className="font-medium text-slate-500 dark:text-zinc-400">Eliminação (17º ao 22º)</span>
+            <span className="font-medium text-slate-500 dark:text-zinc-400">{t('legend_elimination', 'Eliminação (17º ao 22º)')}</span>
           </div>
         </div>
         <span className="font-mono text-[9px] sm:text-[10px] text-slate-400 dark:text-zinc-500">💡 {t('legend_realtime', 'Atualizado em tempo real')}</span>

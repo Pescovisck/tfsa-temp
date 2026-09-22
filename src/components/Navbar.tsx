@@ -49,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
               </div>
               <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-zinc-400 font-mono tracking-wide hidden sm:block truncate">
-                // 2026 TOURNAMENT HUB
+                {t('hub_subtitle', '// 2026 TOURNAMENT HUB')}
               </p>
             </div>
           </div>
@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 (currentPage === 'main'
                   ? 'gold-gradient-bg text-black shadow-sm font-black'
                   : 'text-slate-600 dark:text-zinc-400 hover:text-slate-950 dark:hover:text-white')}
-              title={t('nav_showdown', 'Showdown (Fase Principal)')}
+              title={t('nav_showdown_desc', 'Showdown (Fase Principal)')}
             >
               <Trophy className="w-3.5 h-3.5 flex-shrink-0" />
               <span>{t('nav_showdown', 'SHOWDOWN')}</span>
@@ -74,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 (currentPage === 'seeding'
                   ? 'gold-gradient-bg text-black shadow-sm font-black'
                   : 'text-slate-600 dark:text-zinc-400 hover:text-slate-950 dark:hover:text-white')}
-              title={t('nav_seeding', 'Fase Qualificatória (Histórico)')}
+              title={t('nav_seeding_desc', 'Fase Qualificatória (Histórico)')}
             >
               <History className="w-3.5 h-3.5 flex-shrink-0" />
               <span>{t('nav_seeding', 'QUALIFICATÓRIA')}</span>
@@ -90,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <span className="text-[11px] sm:text-xs font-semibold text-slate-700 dark:text-zinc-300 font-['Chakra_Petch',sans-serif]">
-                {data.source === 'google-sheets' ? t('nav_live', 'Ao Vivo') : 'Offline'}
+                {data.source === 'google-sheets' ? t('nav_live', 'Ao Vivo') : t('nav_offline', 'Offline')}
               </span>
               <span className="text-xs text-slate-300 dark:text-zinc-700">•</span>
               <span className="text-xs text-slate-500 dark:text-zinc-400 font-mono">

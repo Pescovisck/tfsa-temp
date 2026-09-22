@@ -150,7 +150,7 @@ const RoundsView: React.FC<RoundsViewProps> = ({
               >
                 <div className="flex items-center justify-between mb-3 text-[11px] text-slate-500 dark:text-zinc-400 pb-2 border-b border-slate-100 dark:border-zinc-800/80 font-mono">
                   <span className="font-bold text-[#8c6310] dark:text-[#ecc975] uppercase">
-                    Jogo #{match.matchNumber}
+                    {t('match_num', 'Jogo')} #{match.matchNumber}
                   </span>
                   <div className="flex items-center gap-1.5">
                     {hasScore ? (

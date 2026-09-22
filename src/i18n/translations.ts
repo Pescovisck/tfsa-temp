@@ -4,10 +4,14 @@ export const translations = {
   pt: {
     // Navigation
     nav_showdown: 'SHOWDOWN',
+    nav_showdown_desc: 'Fase Principal (Playoffs)',
     nav_seeding: 'QUALIFICATÓRIA',
+    nav_seeding_desc: 'Fase Qualificatória (Histórico)',
     nav_live: 'AO VIVO',
+    nav_offline: 'Offline',
     nav_syncing: 'Sincronizando...',
     nav_refresh: 'ATUALIZAR',
+    hub_subtitle: '// HUB DO TORNEIO 2026',
 
     // Hero Showdown
     hero_showdown_tag: 'MAIN EVENT',
@@ -20,12 +24,13 @@ export const translations = {
 
     // Hero Seeding
     hero_seeding_tag: 'FASE QUALIFICATÓRIA',
-    hero_seeding_subtitle: 'THE FINALS SA • SEEDING STAGE',
+    hero_seeding_subtitle: 'THE FINALS SA • FASE QUALIFICATÓRIA',
     hero_seeding_desc: '// Acompanhe a pontuação e os confrontos atualizados em tempo real.',
     hero_rounds_count: 'Rodadas',
     hero_matches_count: 'Confrontos',
 
     // Bracket Stages
+    stage_label: 'ETAPA',
     stage_stage_1_title: 'Fase de Grupos',
     stage_stage_1_sub: '4 grupos de 4 times • MD3 • Top 2 avançam',
     stage_best_of_8_title: 'Top 8',
@@ -37,12 +42,17 @@ export const translations = {
 
     // Bracket Cards
     group: 'Grupo',
+    group_label: 'Grupo',
     match_game: 'Partida',
+    match_num: 'Jogo',
     total: 'Total',
     tbd: 'A definir',
+    top_2_advance: 'Top 2 avançam',
+    bo5_best_of_5: 'MD5 • Melhor de 5',
     status_qualified: 'Avança',
     status_finalist: 'Finalista',
     status_champion: 'Campeão',
+    status_eliminated: 'Eliminado',
     trophy_title: 'Troféu Showdown 2026',
     stage_navigation: 'Fases:',
 
@@ -64,7 +74,9 @@ export const translations = {
     table_diff: 'DIF',
     table_points: 'PTS',
     legend_playoff_zone: 'Zona de Playoffs (Top 16)',
+    legend_elimination: 'Eliminação (17º ao 22º)',
     legend_realtime: 'Atualizado em tempo real',
+    no_teams_found: 'Nenhuma equipe encontrada para',
 
     // Rounds Filter
     round: 'Rodada',
@@ -89,10 +101,14 @@ export const translations = {
   en: {
     // Navigation
     nav_showdown: 'SHOWDOWN',
+    nav_showdown_desc: 'Main Stage (Playoffs)',
     nav_seeding: 'QUALIFIERS',
+    nav_seeding_desc: 'Qualifiers (History)',
     nav_live: 'LIVE',
+    nav_offline: 'Offline',
     nav_syncing: 'Syncing...',
     nav_refresh: 'REFRESH',
+    hub_subtitle: '// 2026 TOURNAMENT HUB',
 
     // Hero Showdown
     hero_showdown_tag: 'MAIN EVENT',
@@ -111,6 +127,7 @@ export const translations = {
     hero_matches_count: 'Matches',
 
     // Bracket Stages
+    stage_label: 'STAGE',
     stage_stage_1_title: 'Group Stage',
     stage_stage_1_sub: '4 groups of 4 teams • BO3 • Top 2 advance',
     stage_best_of_8_title: 'Top 8',
@@ -122,12 +139,17 @@ export const translations = {
 
     // Bracket Cards
     group: 'Group',
+    group_label: 'Group',
     match_game: 'Match',
+    match_num: 'Match',
     total: 'Total',
     tbd: 'TBD',
+    top_2_advance: 'Top 2 advance',
+    bo5_best_of_5: 'BO5 • Best of 5',
     status_qualified: 'Advances',
     status_finalist: 'Finalist',
     status_champion: 'Champion',
+    status_eliminated: 'Eliminated',
     trophy_title: 'Showdown 2026 Trophy',
     stage_navigation: 'Stages:',
 
@@ -149,7 +171,9 @@ export const translations = {
     table_diff: 'DIFF',
     table_points: 'PTS',
     legend_playoff_zone: 'Playoffs Zone (Top 16)',
+    legend_elimination: 'Elimination (17th to 22nd)',
     legend_realtime: 'Updated in real time',
+    no_teams_found: 'No teams found for',
 
     // Rounds Filter
     round: 'Round',
@@ -174,10 +198,14 @@ export const translations = {
   es: {
     // Navigation
     nav_showdown: 'SHOWDOWN',
+    nav_showdown_desc: 'Fase Principal (Playoffs)',
     nav_seeding: 'CLASIFICATORIA',
+    nav_seeding_desc: 'Fase Clasificatoria (Histórico)',
     nav_live: 'EN VIVO',
+    nav_offline: 'Desconectado',
     nav_syncing: 'Sincronizando...',
     nav_refresh: 'ACTUALIZAR',
+    hub_subtitle: '// HUB DEL TORNEO 2026',
 
     // Hero Showdown
     hero_showdown_tag: 'EVENTO PRINCIPAL',
@@ -196,6 +224,7 @@ export const translations = {
     hero_matches_count: 'Partidas',
 
     // Bracket Stages
+    stage_label: 'ETAPA',
     stage_stage_1_title: 'Fase de Grupos',
     stage_stage_1_sub: '4 grupos de 4 equipos • BO3 • Top 2 avanzan',
     stage_best_of_8_title: 'Top 8',
@@ -207,12 +236,17 @@ export const translations = {
 
     // Bracket Cards
     group: 'Grupo',
+    group_label: 'Grupo',
     match_game: 'Partida',
+    match_num: 'Partida',
     total: 'Total',
     tbd: 'Por definir',
+    top_2_advance: 'Top 2 avanzan',
+    bo5_best_of_5: 'BO5 • Mejor de 5',
     status_qualified: 'Avanza',
     status_finalist: 'Finalista',
     status_champion: 'Campeón',
+    status_eliminated: 'Eliminado',
     trophy_title: 'Trofeo Showdown 2026',
     stage_navigation: 'Fases:',
 
@@ -234,7 +268,9 @@ export const translations = {
     table_diff: 'DIF',
     table_points: 'PTS',
     legend_playoff_zone: 'Zona de Playoffs (Top 16)',
+    legend_elimination: 'Eliminación (17º al 22º)',
     legend_realtime: 'Actualizado en tiempo real',
+    no_teams_found: 'No se encontraron equipos para',
 
     // Rounds Filter
     round: 'Ronda',

@@ -117,7 +117,7 @@ export const BracketView: React.FC<BracketViewProps> = ({
                     : 'bg-white dark:bg-[#18181b] border-slate-200/90 dark:border-zinc-800 shadow-sm')}>
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <span className="text-[10px] font-mono font-bold tracking-widest text-[#c5a059] uppercase flex items-center gap-1">
-                      {isFinalStage ? <Crown className="w-3 h-3" /> : <span>ETAPA {sIdx + 1}</span>}
+                      {isFinalStage ? <Crown className="w-3 h-3" /> : <span>{t('stage_label', 'ETAPA')} {sIdx + 1}</span>}
                     </span>
                     <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase bg-slate-100 dark:bg-[#202024] text-slate-600 dark:text-zinc-400 border border-slate-200 dark:border-zinc-700">
                       {stage.groups[0]?.format || 'MD3'}
@@ -170,7 +170,7 @@ export const BracketView: React.FC<BracketViewProps> = ({
                     : 'bg-white dark:bg-[#18181b] border-slate-200 dark:border-zinc-800 shadow-sm')}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-[10px] font-mono font-bold tracking-widest text-[#c5a059] uppercase flex items-center gap-1">
-                      {isFinalStage ? <Crown className="w-3 h-3" /> : <span>ETAPA {sIdx + 1}</span>}
+                      {isFinalStage ? <Crown className="w-3 h-3" /> : <span>{t('stage_label', 'ETAPA')} {sIdx + 1}</span>}
                     </span>
                     <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase bg-slate-100 dark:bg-[#202024] text-slate-600 dark:text-zinc-400 border border-slate-200 dark:border-zinc-700">
                       {stage.groups[0]?.format || 'MD3'}
@@ -243,7 +243,7 @@ const GroupCard: React.FC<GroupCardProps> = ({
             <Swords className="w-3.5 h-3.5 text-[#c5a059]" />
           )}
           <span className="font-bold text-sm text-slate-900 dark:text-white font-['Teko',sans-serif] tracking-wider uppercase">
-            {group.name}
+            {group.name.replace(/^Grupo/i, t('group_label', 'Grupo'))}
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -358,8 +358,8 @@ const GroupCard: React.FC<GroupCardProps> = ({
       <div className="px-3 py-1.5 bg-slate-50/50 dark:bg-[#161618] border-t border-slate-100 dark:border-zinc-800/60 flex items-center justify-between text-[10px] text-slate-400 dark:text-zinc-500 font-mono">
         <span>
           {isFinal 
-            ? 'MD5 • Melhor de 5' 
-            : 'Top 2 avançam'}
+            ? t('bo5_best_of_5', 'MD5 • Melhor de 5') 
+            : t('top_2_advance', 'Top 2 avançam')}
         </span>
         <span className="flex items-center gap-0.5 text-slate-500 dark:text-zinc-400">
           Ranked Cashout
