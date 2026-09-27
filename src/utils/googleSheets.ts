@@ -246,29 +246,29 @@ export function parseBracketCSV(csvText: string): BracketStage[] {
       defaultTitle: 'Top 8', 
       subtitleKey: 'stage_best_of_8_sub', 
       startCol: 6, 
-      endCol: 10, 
+      endCol: 12, 
       isFinal: false,
       initialGroupNum: '5',
-      defaultFormat: 'MD3' as const
+      defaultFormat: 'MD5' as const
     },
     { 
       id: 'semi_finals', 
       titleKey: 'stage_semi_finals_title', 
       defaultTitle: 'Semifinais', 
       subtitleKey: 'stage_semi_finals_sub', 
-      startCol: 12, 
-      endCol: 16, 
+      startCol: 14, 
+      endCol: 20, 
       isFinal: false,
       initialGroupNum: '7',
-      defaultFormat: 'MD3' as const
+      defaultFormat: 'MD5' as const
     },
     { 
       id: 'finals', 
       titleKey: 'stage_finals_title', 
       defaultTitle: 'Grande Final', 
       subtitleKey: 'stage_finals_sub', 
-      startCol: 18, 
-      endCol: 24, 
+      startCol: 22, 
+      endCol: 28, 
       isFinal: true,
       initialGroupNum: '8',
       defaultFormat: 'MD5' as const
@@ -278,13 +278,16 @@ export function parseBracketCSV(csvText: string): BracketStage[] {
   return stageDefs.map(def => {
     const groups: BracketGroup[] = [];
     
-    const createNewGroup = (groupNum: string, format: 'MD3' | 'MD5'): BracketGroup => ({
-      id: `group-${groupNum}`,
-      name: `Grupo ${groupNum}`,
-      stageName: def.defaultTitle,
-      format,
-      teams: []
-    });
+    const createNewGroup = (groupNum: string, defaultFmt: 'MD3' | 'MD5'): BracketGroup => {
+      const format = (groupNum === '5' || groupNum === '6' || groupNum === '7' || groupNum === '8') ? 'MD5' : defaultFmt;
+      return {
+        id: `group-${groupNum}`,
+        name: `Grupo ${groupNum}`,
+        stageName: def.defaultTitle,
+        format,
+        teams: []
+      };
+    };
 
     let currentGroup: BracketGroup | null = def.initialGroupNum
       ? createNewGroup(def.initialGroupNum, def.defaultFormat)
@@ -309,7 +312,7 @@ export function parseBracketCSV(csvText: string): BracketStage[] {
       for (let c = def.startCol; c <= def.endCol; c++) {
         const cell = (row[c] || '').trim();
         if (/^MD5$/i.test(cell) && currentGroup) currentGroup.format = 'MD5';
-        else if (/^MD3$/i.test(cell) && currentGroup) currentGroup.format = 'MD3';
+        else if (/^MD3$/i.test(cell) && currentGroup && def.id === 'stage_1') currentGroup.format = 'MD3';
       }
 
       if (/^(Time|Equipe|Team|Partida|Stage|Best of|Semi-finals|Finals)/i.test(cell0)) {

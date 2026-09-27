@@ -197,7 +197,7 @@ export const OBSBracketOverlay: React.FC<OBSBracketOverlayProps> = ({
             className="w-fit max-w-full mx-auto my-auto select-none"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'minmax(220px, 245px) 28px minmax(220px, 245px) 28px minmax(220px, 245px) 28px minmax(230px, 255px)',
+              gridTemplateColumns: 'minmax(210px, 235px) 28px minmax(245px, 275px) 28px minmax(245px, 275px) 28px minmax(245px, 275px)',
               gridTemplateRows: 'auto repeat(4, 1fr)',
               columnGap: '6px',
               rowGap: '6px',
@@ -259,7 +259,7 @@ export const OBSBracketOverlay: React.FC<OBSBracketOverlayProps> = ({
                 <div style={{ gridColumn: 3, gridRow: 1 }}>
                   <StageHeaderBanner
                     title={t(stage2.titleKey as TranslationKey, stage2.defaultTitle)}
-                    format={stage2.groups[0]?.format || 'MD3'}
+                    format={stage2.groups[0]?.format || 'MD5'}
                   />
                 </div>
 
@@ -299,7 +299,7 @@ export const OBSBracketOverlay: React.FC<OBSBracketOverlayProps> = ({
                 <div style={{ gridColumn: 5, gridRow: 1 }}>
                   <StageHeaderBanner
                     title={t(stage3.titleKey as TranslationKey, stage3.defaultTitle)}
-                    format={stage3.groups[0]?.format || 'MD3'}
+                    format={stage3.groups[0]?.format || 'MD5'}
                   />
                 </div>
 
@@ -381,7 +381,7 @@ export const OBSBracketOverlay: React.FC<OBSBracketOverlayProps> = ({
                   {/* Stage Title Header */}
                   <div className="mb-4 text-center">
                     <span className="px-3 py-1 rounded-full bg-[#c5a059]/20 text-[#ecc975] border border-[#c5a059]/40 font-mono text-xs font-bold uppercase tracking-wider">
-                      {stage.groups[0]?.format || 'MD3'} • {isFinal ? t('obs_finalists_count', '2 Finalistas') : t('top_2_advance', 'Top 2 avançam')}
+                      {stage.groups[0]?.format || (stage.id === 'stage_1' ? 'MD3' : 'MD5')} • {isFinal ? t('obs_finalists_count', '2 Finalistas') : t('top_2_advance', 'Top 2 avançam')}
                     </span>
                     <h2 className="text-3xl sm:text-5xl font-black font-['Teko',sans-serif] tracking-wider uppercase text-white mt-1">
                       {stageTitle}

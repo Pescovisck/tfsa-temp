@@ -120,7 +120,7 @@ export const BracketView: React.FC<BracketViewProps> = ({
                       {isFinalStage ? <Crown className="w-3 h-3" /> : <span>{t('stage_label', 'ETAPA')} {sIdx + 1}</span>}
                     </span>
                     <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase bg-slate-100 dark:bg-[#202024] text-slate-600 dark:text-zinc-400 border border-slate-200 dark:border-zinc-700">
-                      {stage.groups[0]?.format || 'MD3'}
+                      {stage.groups[0]?.format || (stage.id === 'stage_1' ? 'MD3' : 'MD5')}
                     </span>
                   </div>
                   <h3 className="text-xl font-black text-slate-950 dark:text-white font-['Teko',sans-serif] tracking-wider uppercase leading-none">
@@ -173,7 +173,7 @@ export const BracketView: React.FC<BracketViewProps> = ({
                       {isFinalStage ? <Crown className="w-3 h-3" /> : <span>{t('stage_label', 'ETAPA')} {sIdx + 1}</span>}
                     </span>
                     <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase bg-slate-100 dark:bg-[#202024] text-slate-600 dark:text-zinc-400 border border-slate-200 dark:border-zinc-700">
-                      {stage.groups[0]?.format || 'MD3'}
+                      {stage.groups[0]?.format || (stage.id === 'stage_1' ? 'MD3' : 'MD5')}
                     </span>
                   </div>
                   <h3 className="text-2xl font-black text-slate-950 dark:text-white font-['Teko',sans-serif] tracking-wider uppercase leading-none">
