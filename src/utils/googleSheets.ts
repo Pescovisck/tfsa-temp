@@ -369,13 +369,15 @@ export function parseBracketCSV(csvText: string): BracketStage[] {
 
   function finalizeGroup(group: BracketGroup, isFinal: boolean) {
     const hasAnyPlayed = group.teams.some(t => t.total > 0 || t.scores.some(s => s !== null && s > 0));
-    const sorted = [...group.teams].sort((a, b) => b.total - a.total);
-    group.teams.forEach(t => {
-      const rankIdx = sorted.findIndex(s => s === t);
+    const sorted = [...group.teams].sort((a, b) => (b.total ?? 0) - (a.total ?? 0));
+    sorted.forEach((t, rankIdx) => {
       t.rank = rankIdx + 1;
       if (isFinal) {
         if (hasAnyPlayed && rankIdx === 0 && t.total > (sorted[1]?.total ?? 0)) {
           t.isWinner = true;
+        }
+        if (hasAnyPlayed) {
+          t.isQualified = true;
         }
       } else {
         if (rankIdx < 2 && hasAnyPlayed) {
@@ -383,6 +385,9 @@ export function parseBracketCSV(csvText: string): BracketStage[] {
         }
       }
     });
+    if (hasAnyPlayed) {
+      group.teams = sorted;
+    }
   }
 }
 
